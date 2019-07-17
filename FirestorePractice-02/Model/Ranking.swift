@@ -13,15 +13,15 @@ class Ranking {
     
     private(set) var rankingTitle: String!
     private(set) var rankingCreatedDate: Date!
-//    private(set) var rankingItems = [RankItem]()
+    private(set) var rankingItems = [RankingItem]()
 //    private(set) var
 //    private(set) var
 
-//    init(rankingTitle: String, rankingCreatedDate: Date, rankingItems: [RankItem]) {
-    init(rankingTitle: String, rankingCreatedDate: Date) {
+    init(rankingTitle: String, rankingCreatedDate: Date, rankingItems: [RankingItem]) {
+//    init(rankingTitle: String, rankingCreatedDate: Date) {
         self.rankingTitle = rankingTitle
         self.rankingCreatedDate = rankingCreatedDate
-//        self.rankingItems = rankingItems
+        self.rankingItems = rankingItems
     }
     
 //    class func parseData(snapshot: QuerySnapshot?) -> [Ranking] {

@@ -15,7 +15,7 @@ class FeedCell: UICollectionViewCell {
     var delegate: FeedCellDelegate?
     
     var ranking: Ranking? {
-//    var rankingTap: (Ranking?, [RankItem?]) {
+//    var rankingTap: (Ranking?, [RankingItem?]) {
 
         didSet {
     
@@ -24,16 +24,23 @@ class FeedCell: UICollectionViewCell {
 //            guard let likes = ranking?.likes else { return }
             
 //            let rankingTapInside = rankingTap
-//
+
 //            let ranking = rankingTapInside.0
 //            let rankingItem = rankingTapInside.1
+            
+//            let ranking = rankingTap.0
+//            let rankingItem = rankingTap.1
             
             guard let rankingTitle = ranking?.rankingTitle else { return }
             guard let rankingCreatedDate = ranking?.rankingCreatedDate else { return }
             
-//            guard let rankingItemTitleOne = rankingItem[0]?.rankingItemTitle else { return }
-//            guard let rankingItemTextOne = rankingItem[0]?.rankingItemText else { return }
-//            guard let rankingItemImageUrlOne = rankingItem[0]?.rankingItemImageUrl else { return }
+            guard let rankingItems = ranking?.rankingItems else { return }
+            
+            print("ranking items count: \(rankingItems.count)")
+            
+//            guard let rankingItemTitleOne = rankingItems[0].rankingItemTitle else { return }
+//            guard let rankingItemTextOne = rankingItems[0].rankingItemText else { return }
+//            guard let rankingItemImageUrlOne = rankingItems[0].rankingItemImageUrl else { return }
 //
             rankingTitleLabel.text = rankingTitle
             rankingCreatedDateLabel.text = rankingCreatedDate.timeAgoToDisplay()

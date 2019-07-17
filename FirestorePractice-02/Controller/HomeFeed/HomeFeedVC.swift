@@ -22,7 +22,7 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     var userProfileController: UserProfileVC?
     var isFetchingUpdates = false
     var rankingItems = [RankingItem]()
-//    var rankingTap: (Ranking?, [RankItem?])?
+    var rankingTap: (Ranking?, [RankingItem?])?
     
     // MARK: - Init
     
@@ -104,6 +104,7 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
         } else {
 //            cell.rankingTap.0 = rankings[indexPath.item]
 //            cell.rankingTap.1 = rankings[indexPath.item].rankingItems
+//            cell.rankingTap = (rankings[indexPath.item], rankings[indexPath.item].rankingItems)
 //            cell.rankingTap = (rankings[indexPath.item], rankings[indexPath.item].rankingItems)
             cell.ranking = rankings[indexPath.item]
             print("cellForItemAt: \(indexPath.item)")
@@ -266,11 +267,14 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
                             print("*** item snapshot is empty ***")
                             return
                         } else {
-                            guard let snap = snapshot else { return }
+                            guard let snap = snapshot else {
+                                print("DEBUG: Couldn't do snap = snapshot")
+                                return
+                            }
                             
                             self.collectionView?.refreshControl?.endRefreshing()
                             
-                            for documtne in snap.documents {
+                            for document in snap.documents {
                                 let data = document.data()
                                 let rankingItemId = document.documentID
                                 let rankingItemTitle = data[RANKING_ITEM_TITLE] as? String ?? ""
@@ -285,8 +289,8 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
                     })
                     
                     //                    let newRanking = Thought(username: username, timestamp: timestamp, thoughtTxt: thoughtTxt, numLikes: numLikes, numComments: numComments, documentId: documentId, userId: userId, photoImageUrl: photoImageUrl)
-//                    let newRanking = Ranking(rankingTitle: rankingTitle, rankingCreatedDate: rankingCreatedDate, rankingItems: self.rankingItems)
-                    let newRanking = Ranking(rankingTitle: rankingTitle, rankingCreatedDate: rankingCreatedDate)
+                    let newRanking = Ranking(rankingTitle: rankingTitle, rankingCreatedDate: rankingCreatedDate, rankingItems: self.rankingItems)
+//                    let newRanking = Ranking(rankingTitle: rankingTitle, rankingCreatedDate: rankingCreatedDate)
                     self.rankings.append(newRanking)
                     print("*** new ranking appended :\(rankingTitle)")
                 }
