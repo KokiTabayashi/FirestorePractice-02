@@ -233,7 +233,7 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
             } else {
                 guard let snap = snapshot else { return }
 
-                self.collectionView?.refreshControl?.endRefreshing()
+//                self.collectionView?.refreshControl?.endRefreshing()
 
                 for document in snap.documents {
                     let data = document.data()
@@ -251,7 +251,9 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
                     //
 
                     if true {
-                        queryRankingItem = RANKING_REF.document(documentId).collection(RANKING_ITEM_COLLECTION).order(by: RANKING_CREATED_DATE, descending: true)
+                        print("document ID: \(documentId)")
+                        queryRankingItem = RANKING_REF.document(documentId).collection(RANKING_ITEM_COLLECTION)
+//                        queryRankingItem = RANKING_REF.document(documentId).collection(RANKING_ITEM_COLLECTION).order(by: RANKING_CREATED_DATE, descending: true)
                     } else {
                         // planed to modify when pagination is implemented
                     }
@@ -264,14 +266,21 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
                             print("*** item snapshot is empty ***")
                             return
                         } else {
-                            let data = document.data()
-                            let rankingItemId = document.documentID
-                            let rankingItemTitle = data[RANKING_ITEM_TITLE] as? String ?? ""
-                            let rankingItemText = data[RANKING_ITEM_TEXT] as? String ?? ""
-                            let rankingItemImageUrl = data[RANKING_ITEM_IMAGE_URL] as? String ?? ""
-
-                            let newRankingItem = RankingItem(rankingItemTitle: rankingItemTitle, rankingItemText: rankingItemText, rankingItemImageUrl: rankingItemImageUrl, rankingItemId: rankingItemId)
-                            self.rankingItems.append(newRankingItem)
+                            guard let snap = snapshot else { return }
+                            
+                            self.collectionView?.refreshControl?.endRefreshing()
+                            
+                            for documtne in snap.documents {
+                                let data = document.data()
+                                let rankingItemId = document.documentID
+                                let rankingItemTitle = data[RANKING_ITEM_TITLE] as? String ?? ""
+                                let rankingItemText = data[RANKING_ITEM_TEXT] as? String ?? ""
+                                let rankingItemImageUrl = data[RANKING_ITEM_IMAGE_URL] as? String ?? ""
+                                
+                                let newRankingItem = RankingItem(rankingItemTitle: rankingItemTitle, rankingItemText: rankingItemText, rankingItemImageUrl: rankingItemImageUrl, rankingItemId: rankingItemId)
+                                self.rankingItems.append(newRankingItem)
+                                print("*** new ranking Item appended :\(rankingItemTitle)")
+                            }
                         }
                     })
                     
