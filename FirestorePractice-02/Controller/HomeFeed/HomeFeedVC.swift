@@ -223,7 +223,7 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
             queryRanking = RANKING_REF
                 .order(by: RANKING_CREATED_DATE, descending: true)
         }
-
+        
         queryRanking.getDocuments { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -246,10 +246,6 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
 //                    let numComments = data[NUM_COMMENTS] as? Int ?? 0
 //                    let userId = data[USER_ID] as? String ?? ""
 //                    let photoImageUrl = data[PHOTOIMAGEURL_TXT] as? String ?? ""
-
-                    //
-                    // need to call fetchpost() here (need to implement)
-                    //
 
                     if true {
                         print("document ID: \(documentId)")
@@ -293,18 +289,23 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
 //                    let newRanking = Ranking(rankingTitle: rankingTitle, rankingCreatedDate: rankingCreatedDate)
                     self.rankings.append(newRanking)
                     print("*** new ranking appended :\(rankingTitle)")
-                }
+                } // End of for document in snap.documents {
 
                 self.collectionView?.reloadData()
-            }
-    
+                
+            } // End of } else { guard let snap = snapshot else { return }
+            
 //            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
 //                self.tableView.reloadData()
 //                self.isFetchingUpdates = false
 //            })
 //
 //            self.lastDocumentSnapshot = snapshot!.documents.last!
-        }
+            
+        } // End of queryRanking.getDocuments { (snapshot, error) in
+        
+        
+        
     
         // old code: Firebase
 //        if currentKey == nil {
