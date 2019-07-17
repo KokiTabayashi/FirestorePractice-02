@@ -23,6 +23,7 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     var isFetchingUpdates = false
     var rankingItems = [RankingItem]()
     var rankingTap: (Ranking?, [RankingItem?])?
+    var rankingDict: [String: [RankingItem]] = [:]
     
     // MARK: - Init
     
@@ -289,6 +290,7 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
 //                    let newRanking = Ranking(rankingTitle: rankingTitle, rankingCreatedDate: rankingCreatedDate)
                     self.rankings.append(newRanking)
                     print("*** new ranking appended :\(rankingTitle)")
+                    print("*** the number of items appended to the ranking: ")
                 } // End of for document in snap.documents {
 
                 self.collectionView?.reloadData()
