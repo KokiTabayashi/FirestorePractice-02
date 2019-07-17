@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RankItem {
+class RankingItem {
     
     private(set) var rankingItemTitle: String!
     private(set) var rankingItemText: String!

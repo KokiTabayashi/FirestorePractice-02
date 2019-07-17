@@ -16,7 +16,7 @@
 		E727327322D6BB4E0029046C /* MainTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E727327222D6BB4E0029046C /* MainTabVC.swift */; };
 		E727327522D6BB760029046C /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E727327422D6BB760029046C /* LoginVC.swift */; };
 		E727327722D6BB870029046C /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E727327622D6BB870029046C /* SignUpVC.swift */; };
-		E7A07D6C22DD93D9008AF528 /* RankItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A07D6B22DD93D9008AF528 /* RankItem.swift */; };
+		E7A07D6C22DD93D9008AF528 /* RankingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A07D6B22DD93D9008AF528 /* RankingItem.swift */; };
 		E7D7FB2622D7E90500C4FE97 /* HomeFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D7FB2522D7E90500C4FE97 /* HomeFeedVC.swift */; };
 		E7D7FB2822D7EDBB00C4FE97 /* SearchRankVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D7FB2722D7EDBB00C4FE97 /* SearchRankVC.swift */; };
 		E7D7FB2A22D7F54000C4FE97 /* AddRankVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D7FB2922D7F54000C4FE97 /* AddRankVC.swift */; };
@@ -47,7 +47,7 @@
 		E727327222D6BB4E0029046C /* MainTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabVC.swift; sourceTree = "<group>"; };
 		E727327422D6BB760029046C /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		E727327622D6BB870029046C /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
-		E7A07D6B22DD93D9008AF528 /* RankItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankItem.swift; sourceTree = "<group>"; };
+		E7A07D6B22DD93D9008AF528 /* RankingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingItem.swift; sourceTree = "<group>"; };
 		E7D7FB2522D7E90500C4FE97 /* HomeFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedVC.swift; sourceTree = "<group>"; };
 		E7D7FB2722D7EDBB00C4FE97 /* SearchRankVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRankVC.swift; sourceTree = "<group>"; };
 		E7D7FB2922D7F54000C4FE97 /* AddRankVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRankVC.swift; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 			children = (
 				E7D7FB3D22D9D3DE00C4FE97 /* User.swift */,
 				E7D7FB3B22D9D37500C4FE97 /* Ranking.swift */,
-				E7A07D6B22DD93D9008AF528 /* RankItem.swift */,
+				E7A07D6B22DD93D9008AF528 /* RankingItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -370,7 +370,7 @@
 				E7D7FB3322D84D8300C4FE97 /* Constants.swift in Sources */,
 				E7D7FB2A22D7F54000C4FE97 /* AddRankVC.swift in Sources */,
 				E7D7FB3522D894A400C4FE97 /* Protocols.swift in Sources */,
-				E7A07D6C22DD93D9008AF528 /* RankItem.swift in Sources */,
+				E7A07D6C22DD93D9008AF528 /* RankingItem.swift in Sources */,
 				E7D7FB3C22D9D37500C4FE97 /* Ranking.swift in Sources */,
 				E7D7FB4022D9D64500C4FE97 /* UserRankingCell.swift in Sources */,
 				E727327322D6BB4E0029046C /* MainTabVC.swift in Sources */,

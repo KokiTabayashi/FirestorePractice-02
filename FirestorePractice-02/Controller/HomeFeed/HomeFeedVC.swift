@@ -21,7 +21,7 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     var currentKey: String?
     var userProfileController: UserProfileVC?
     var isFetchingUpdates = false
-//    var rankingItems = [RankItem]()
+    var rankingItems = [RankingItem]()
 //    var rankingTap: (Ranking?, [RankItem?])?
     
     // MARK: - Init
@@ -202,7 +202,7 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     func fetchPosts() {
 
         var queryRanking: Query!
-//        var queryRankingItem: Query!
+        var queryRankingItem: Query!
 
         // DEBUG
         print("DEBUG: FeedVC fetchPosts - 1")
@@ -250,30 +250,30 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
                     // need to call fetchpost() here (need to implement)
                     //
 
-//                    if true {
-//                        queryRankingItem = RANKING_REF.document(documentId).collection(RANKING_ITEM_COLLECTION).order(by: RANKING_CREATED_DATE, descending: true)
-//                    } else {
-//                        // planed to modify when pagination is implemented
-//                    }
-//
-//                    queryRankingItem.getDocuments(completion: { (snapshot, error) in
-//                        if let error = error {
-//                            print(error.localizedDescription)
-//                        } else if snapshot!.isEmpty {
-//                            self.isFetchingUpdates = false
-//                            print("*** item snapshot is empty ***")
-//                            return
-//                        } else {
-//                            let data = document.data()
-//                            let rankingItemId = document.documentID
-//                            let rankingItemTitle = data[RANKING_ITEM_TITLE] as? String ?? ""
-//                            let rankingItemText = data[RANKING_ITEM_TEXT] as? String ?? ""
-//                            let rankingItemImageUrl = data[RANKING_ITEM_IMAGE_URL] as? String ?? ""
-//
-//                            let newRankingItem = RankItem(rankingItemTitle: rankingItemTitle, rankingItemText: rankingItemText, rankingItemImageUrl: rankingItemImageUrl, rankingItemId: rankingItemId)
-//                            self.rankingItems.append(newRankingItem)
-//                        }
-//                    })
+                    if true {
+                        queryRankingItem = RANKING_REF.document(documentId).collection(RANKING_ITEM_COLLECTION).order(by: RANKING_CREATED_DATE, descending: true)
+                    } else {
+                        // planed to modify when pagination is implemented
+                    }
+
+                    queryRankingItem.getDocuments(completion: { (snapshot, error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        } else if snapshot!.isEmpty {
+                            self.isFetchingUpdates = false
+                            print("*** item snapshot is empty ***")
+                            return
+                        } else {
+                            let data = document.data()
+                            let rankingItemId = document.documentID
+                            let rankingItemTitle = data[RANKING_ITEM_TITLE] as? String ?? ""
+                            let rankingItemText = data[RANKING_ITEM_TEXT] as? String ?? ""
+                            let rankingItemImageUrl = data[RANKING_ITEM_IMAGE_URL] as? String ?? ""
+
+                            let newRankingItem = RankingItem(rankingItemTitle: rankingItemTitle, rankingItemText: rankingItemText, rankingItemImageUrl: rankingItemImageUrl, rankingItemId: rankingItemId)
+                            self.rankingItems.append(newRankingItem)
+                        }
+                    })
                     
                     //                    let newRanking = Thought(username: username, timestamp: timestamp, thoughtTxt: thoughtTxt, numLikes: numLikes, numComments: numComments, documentId: documentId, userId: userId, photoImageUrl: photoImageUrl)
 //                    let newRanking = Ranking(rankingTitle: rankingTitle, rankingCreatedDate: rankingCreatedDate, rankingItems: self.rankingItems)
