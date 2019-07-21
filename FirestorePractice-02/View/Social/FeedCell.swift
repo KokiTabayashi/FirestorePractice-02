@@ -67,7 +67,8 @@ class FeedCell: UICollectionViewCell {
             
             rankingItemTitleOneLabel.text = rankingItemTitleOne
             rankingItemTextOneLabel.text = rankingItemTextOne
-            rankingItemImageUrlOneLabel.text = rankingItemImageUrlOne
+//            rankingItemImageUrlOneLabel.text = rankingItemImageUrlOne
+            rankingItemOneImageView.loadImage(with: rankingItemImageUrlOne)
         }
     }
     
@@ -194,12 +195,20 @@ class FeedCell: UICollectionViewCell {
         return label
     }()
     
-    let rankingItemImageUrlOneLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 12)
-        label.text = "Ranking Title"
-        return label
+//    let rankingItemImageUrlOneLabel: UILabel = {
+//        let label = UILabel()
+//        label.textColor = .black
+//        label.font = UIFont.boldSystemFont(ofSize: 12)
+//        label.text = "Ranking Title"
+//        return label
+//    }()
+    
+    let rankingItemOneImageView: CustomImageView = {
+        let iv = CustomImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        iv.backgroundColor = .lightGray
+        return iv
     }()
 
     override init(frame: CGRect) {
@@ -236,7 +245,13 @@ class FeedCell: UICollectionViewCell {
         rankingCreatedDateLabel.anchor(top: rankingTitleLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
         
         addSubview(rankingItemTitleOneLabel)
-        rankingItemTitleOneLabel.anchor(top: rankingCreatedDateLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        rankingItemTitleOneLabel.anchor(top: rankingCreatedDateLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        addSubview(rankingItemTextOneLabel)
+        rankingItemTextOneLabel.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        addSubview(rankingItemOneImageView)
+        rankingItemOneImageView.anchor(top: rankingItemTextOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
     }
     

@@ -285,6 +285,7 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
                                 let newRankingItem = RankingItem(rankingItemTitle: rankingItemTitle, rankingItemText: rankingItemText, rankingItemImageUrl: rankingItemImageUrl, rankingItemId: rankingItemId)
                                 self.rankingItems.append(newRankingItem)
                                 print("*** new ranking Item appended :\(rankingItemTitle)")
+                                print("*** new ranking Text appended : \(rankingItemText)")
                                 print("*** total number of rankingItems: \(self.rankingItems.count)")
                             }
                             // test
