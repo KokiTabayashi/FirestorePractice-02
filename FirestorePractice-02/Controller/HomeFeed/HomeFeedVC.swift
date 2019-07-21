@@ -237,6 +237,8 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
 
 //                self.collectionView?.refreshControl?.endRefreshing()
 
+                self.rankings.removeAll()
+                
                 for document in snap.documents {
                     let data = document.data()
                     let documentId = document.documentID
@@ -271,6 +273,8 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
                             
                             self.collectionView?.refreshControl?.endRefreshing()
                             
+                            self.rankingItems.removeAll()
+                            
                             for document in snap.documents {
                                 let data = document.data()
                                 let rankingItemId = document.documentID
@@ -290,8 +294,9 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
                             print("*** the number of items appended to the ranking: ")
                             self.collectionView?.reloadData()
                         }
+//                        self.collectionView?.reloadData()
                     })
-                    
+//                    self.collectionView?.reloadData()
                     //                    let newRanking = Thought(username: username, timestamp: timestamp, thoughtTxt: thoughtTxt, numLikes: numLikes, numComments: numComments, documentId: documentId, userId: userId, photoImageUrl: photoImageUrl)
                     
                     // test commenting out
@@ -305,7 +310,7 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
 //                    print("*** the number of items appended to the ranking: ")
                 } // End of for document in snap.documents {
 
-                self.collectionView?.reloadData()
+//                self.collectionView?.reloadData()
                 
             } // End of } else { guard let snap = snapshot else { return }
             
