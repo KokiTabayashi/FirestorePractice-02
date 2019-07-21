@@ -13,6 +13,7 @@ import Firebase
 class FeedCell: UICollectionViewCell {
     
     var delegate: FeedCellDelegate?
+    var width: CGFloat = 300.0
     
     var ranking: Ranking? {
 //    var rankingTap: (Ranking?, [RankingItem?]) {
@@ -207,7 +208,7 @@ class FeedCell: UICollectionViewCell {
         let iv = CustomImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
-        iv.backgroundColor = .lightGray
+        iv.backgroundColor = .white
         return iv
     }()
 
@@ -251,7 +252,8 @@ class FeedCell: UICollectionViewCell {
         rankingItemTextOneLabel.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         addSubview(rankingItemOneImageView)
-        rankingItemOneImageView.anchor(top: rankingItemTextOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        rankingItemOneImageView.anchor(top: rankingItemTextOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 24, width: width, height: width)
+        rankingItemOneImageView.contentMode = .scaleAspectFit
         
     }
     

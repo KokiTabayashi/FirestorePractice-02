@@ -22,8 +22,8 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     var userProfileController: UserProfileVC?
     var isFetchingUpdates = false
     var rankingItems = [RankingItem]()
-    var rankingTap: (Ranking?, [RankingItem?])?
-    var rankingDict: [String: [RankingItem]] = [:]
+//    var rankingTap: (Ranking?, [RankingItem?])?
+//    var rankingDict: [String: [RankingItem]] = [:]
     
     // MARK: - Init
     
