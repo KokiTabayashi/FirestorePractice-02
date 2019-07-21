@@ -281,16 +281,28 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
                                 let newRankingItem = RankingItem(rankingItemTitle: rankingItemTitle, rankingItemText: rankingItemText, rankingItemImageUrl: rankingItemImageUrl, rankingItemId: rankingItemId)
                                 self.rankingItems.append(newRankingItem)
                                 print("*** new ranking Item appended :\(rankingItemTitle)")
+                                print("*** total number of rankingItems: \(self.rankingItems.count)")
                             }
+                            // test
+                            let newRanking = Ranking(rankingTitle: rankingTitle, rankingCreatedDate: rankingCreatedDate, rankingItems: self.rankingItems)
+                            self.rankings.append(newRanking)
+                            print("*** new ranking appended :\(rankingTitle)")
+                            print("*** the number of items appended to the ranking: ")
+                            self.collectionView?.reloadData()
                         }
                     })
                     
                     //                    let newRanking = Thought(username: username, timestamp: timestamp, thoughtTxt: thoughtTxt, numLikes: numLikes, numComments: numComments, documentId: documentId, userId: userId, photoImageUrl: photoImageUrl)
-                    let newRanking = Ranking(rankingTitle: rankingTitle, rankingCreatedDate: rankingCreatedDate, rankingItems: self.rankingItems)
+                    
+                    // test commenting out
+//                    let newRanking = Ranking(rankingTitle: rankingTitle, rankingCreatedDate: rankingCreatedDate, rankingItems: self.rankingItems)
+                    
 //                    let newRanking = Ranking(rankingTitle: rankingTitle, rankingCreatedDate: rankingCreatedDate)
-                    self.rankings.append(newRanking)
-                    print("*** new ranking appended :\(rankingTitle)")
-                    print("*** the number of items appended to the ranking: ")
+                    
+                    // test commenting out
+//                    self.rankings.append(newRanking)
+//                    print("*** new ranking appended :\(rankingTitle)")
+//                    print("*** the number of items appended to the ranking: ")
                 } // End of for document in snap.documents {
 
                 self.collectionView?.reloadData()

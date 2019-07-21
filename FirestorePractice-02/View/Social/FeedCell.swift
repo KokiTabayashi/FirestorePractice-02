@@ -38,9 +38,9 @@ class FeedCell: UICollectionViewCell {
             
             print("ranking items count: \(rankingItems.count)")
             
-//            guard let rankingItemTitleOne = rankingItems[0].rankingItemTitle else { return }
-//            guard let rankingItemTextOne = rankingItems[0].rankingItemText else { return }
-//            guard let rankingItemImageUrlOne = rankingItems[0].rankingItemImageUrl else { return }
+            guard let rankingItemTitleOne = rankingItems[0].rankingItemTitle else { return }
+            guard let rankingItemTextOne = rankingItems[0].rankingItemText else { return }
+            guard let rankingItemImageUrlOne = rankingItems[0].rankingItemImageUrl else { return }
 //
             rankingTitleLabel.text = rankingTitle
             rankingCreatedDateLabel.text = rankingCreatedDate.timeAgoToDisplay()
@@ -65,9 +65,9 @@ class FeedCell: UICollectionViewCell {
 //        didSet {
 
             
-//            rankingItemTitleOneLabel.text = rankingItemTitleOne
-//            rankingItemTextOneLabel.text = rankingItemTextOne
-//            rankingItemImageUrlOneLabel.text = rankingItemImageUrlOne
+            rankingItemTitleOneLabel.text = rankingItemTitleOne
+            rankingItemTextOneLabel.text = rankingItemTextOne
+            rankingItemImageUrlOneLabel.text = rankingItemImageUrlOne
         }
     }
     
@@ -234,6 +234,10 @@ class FeedCell: UICollectionViewCell {
 
         addSubview(rankingCreatedDateLabel)
         rankingCreatedDateLabel.anchor(top: rankingTitleLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
+        
+        addSubview(rankingItemTitleOneLabel)
+        rankingItemTitleOneLabel.anchor(top: rankingCreatedDateLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
     }
     
     // MARK: - Handlers
