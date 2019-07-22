@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 extension UIView {
     func anchor(top: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, right: NSLayoutXAxisAnchor?, paddingTop: CGFloat, paddingLeft: CGFloat, paddingBottom: CGFloat, paddingRight: CGFloat, width: CGFloat, height: CGFloat) {
@@ -80,5 +81,25 @@ extension Date {
         }
         
         return "\(quotient) \(unit)\(quotient == 1 ? "" : "S") AGO"
+    }
+}
+
+extension Firestore {
+    static func fetchUser(with uid: String, completion: @escaping(User) -> ()) {
+        
+        var user: User!
+        
+        USER_REF.document(uid).getDocument { (document, error) in
+            if let document = document, document.exists {
+                let username = document.get(USERNAME) as? String ?? ""
+                let fullName = document.get(FULLNAME) as? String ?? ""
+                let photoImageUrl = document.get(PHOTOIMAGEURL_TXT) as? String ?? ""
+                
+                user = User(uid: uid, username: username, fullName: fullName, photoImageUrl: photoImageUrl)
+                completion(user)
+            } else {
+                print("*** DEBUG ***: Document does not exist")
+            }
+        }
     }
 }

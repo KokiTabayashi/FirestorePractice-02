@@ -14,11 +14,12 @@ class Ranking {
     private(set) var rankingTitle: String!
     private(set) var rankingCreatedDate: Date!
     private(set) var rankingItems = [RankingItem]()
-//    private(set) var
+    private(set) var rankingOwnerId: String!
 //    private(set) var
 
-    init(rankingTitle: String, rankingCreatedDate: Date, rankingItems: [RankingItem]) {
+    init(rankingOwnerId: String, rankingTitle: String, rankingCreatedDate: Date, rankingItems: [RankingItem]) {
 //    init(rankingTitle: String, rankingCreatedDate: Date) {
+        self.rankingOwnerId = rankingOwnerId
         self.rankingTitle = rankingTitle
         self.rankingCreatedDate = rankingCreatedDate
         self.rankingItems = rankingItems

@@ -11,7 +11,7 @@ import Firebase
 
 // MARK: - General constants
 
-let USERS_REF = "users"
+let USERS = "users"
 
 let USERNAME = "username"
 let DATE_CREATED = "dateCreated"
@@ -39,6 +39,7 @@ let STORAGE_REF = Storage.storage().reference()
 
 // MARK: - Database References
 let RANKING_REF = DB_REF.collection(RANKING_COLLECTION)
+let USER_REF = DB_REF.collection(USERS)
 
 // MARK: - Storage Reference
 let STORAGE_RANDINGS_IMAGES_REF = STORAGE_REF.child("rankings_images")

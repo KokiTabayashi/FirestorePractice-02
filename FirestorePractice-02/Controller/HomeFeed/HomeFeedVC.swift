@@ -215,14 +215,12 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
 
         if rankings.isEmpty {
 
-            queryRanking = RANKING_REF
-                .order(by: RANKING_CREATED_DATE, descending: true)
+            queryRanking = RANKING_REF.order(by: RANKING_CREATED_DATE, descending: true)
             
         } else {
 
             // planed to modify when pagination is implemented
-            queryRanking = RANKING_REF
-                .order(by: RANKING_CREATED_DATE, descending: true)
+            queryRanking = RANKING_REF.order(by: RANKING_CREATED_DATE, descending: true)
         }
         
         queryRanking.getDocuments { (snapshot, error) in
@@ -289,10 +287,10 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
                                 print("*** total number of rankingItems: \(self.rankingItems.count)")
                             }
                             // test
-                            let newRanking = Ranking(rankingTitle: rankingTitle, rankingCreatedDate: rankingCreatedDate, rankingItems: self.rankingItems)
+                            let newRanking = Ranking(rankingOwnerId: rankingOwnerId, rankingTitle: rankingTitle, rankingCreatedDate: rankingCreatedDate, rankingItems: self.rankingItems)
                             self.rankings.append(newRanking)
-                            print("*** new ranking appended :\(rankingTitle)")
-                            print("*** the number of items appended to the ranking: ")
+                            print("*** new ranking appended: \(rankingTitle)")
+                            print("*** the number of items appended to the ranking: \(self.rankingItems.count)")
                             self.collectionView?.reloadData()
                         }
 //                        self.collectionView?.reloadData()

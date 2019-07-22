@@ -13,14 +13,31 @@ import Firebase
 class FeedCell: UICollectionViewCell {
     
     var delegate: FeedCellDelegate?
-    var width: CGFloat = 300.0
+    var width: CGFloat = 100.0
+    var height: CGFloat = 100.0
     
     var ranking: Ranking? {
 //    var rankingTap: (Ranking?, [RankingItem?]) {
 
         didSet {
     
-//            guard let ownerUid = ranking?.ownerUid else { return }
+            guard let ownerUid = ranking?.rankingOwnerId else { return }
+            
+//            var username: String!
+//            var fullName: String!
+//            var photoImageUrl: String!
+            
+            Firestore.fetchUser(with: ownerUid) { (user) in
+//                guard let username = user.username else { return }
+                let username = user.username as? String ?? ""
+//                let fullName = user.fullName as? String ?? ""
+                let photoImageUrl = user.photoImageUrl as? String ?? ""
+                
+                self.profileImageView.loadImage(with: photoImageUrl)
+                self.usernameButton.setTitle(username, for: .normal)
+            }
+            
+            
 //            guard let imageUrl = ranking?.imageUrl else { return }
 //            guard let likes = ranking?.likes else { return }
             
@@ -39,13 +56,35 @@ class FeedCell: UICollectionViewCell {
             
             print("ranking items count: \(rankingItems.count)")
             
+            rankingTitleLabel.text = rankingTitle
+            rankingCreatedDateLabel.text = rankingCreatedDate.timeAgoToDisplay()
+            
             guard let rankingItemTitleOne = rankingItems[0].rankingItemTitle else { return }
             guard let rankingItemTextOne = rankingItems[0].rankingItemText else { return }
             guard let rankingItemImageUrlOne = rankingItems[0].rankingItemImageUrl else { return }
-//
-            rankingTitleLabel.text = rankingTitle
-            rankingCreatedDateLabel.text = rankingCreatedDate.timeAgoToDisplay()
-//
+
+            guard let rankingItemTitleTwo = rankingItems[1].rankingItemTitle else { return }
+            guard let rankingItemTextTwo = rankingItems[1].rankingItemText else { return }
+            guard let rankingItemImageUrlTwo = rankingItems[1].rankingItemImageUrl else { return }
+            
+            guard let rankingItemTitleThree = rankingItems[2].rankingItemTitle else { return }
+            guard let rankingItemTextThree = rankingItems[2].rankingItemText else { return }
+            guard let rankingItemImageUrlThree = rankingItems[2].rankingItemImageUrl else { return }
+
+            rankingItemTitleOneLabel.text = rankingItemTitleOne
+            rankingItemTextOneLabel.text = rankingItemTextOne
+            rankingItemOneImageView.loadImage(with: rankingItemImageUrlOne)
+            
+            rankingItemTitleTwoLabel.text = rankingItemTitleTwo
+            rankingItemTextTwoLabel.text = rankingItemTextTwo
+            rankingItemTwoImageView.loadImage(with: rankingItemImageUrlTwo)
+            
+            rankingItemTitleThreeLabel.text = rankingItemTitleThree
+            rankingItemTextThreeLabel.text = rankingItemTextThree
+            rankingItemThreeImageView.loadImage(with: rankingItemImageUrlThree)
+            
+            
+            
 //            Database.fetchUser(with: ownerUid) { (user) in
 //
 //                // test
@@ -61,15 +100,7 @@ class FeedCell: UICollectionViewCell {
 //            configureLikeButton()
 //        }
 //    }
-//
-//    var rankingItem: [RankItem?] {
-//        didSet {
 
-            
-            rankingItemTitleOneLabel.text = rankingItemTitleOne
-            rankingItemTextOneLabel.text = rankingItemTextOne
-//            rankingItemImageUrlOneLabel.text = rankingItemImageUrlOne
-            rankingItemOneImageView.loadImage(with: rankingItemImageUrlOne)
         }
     }
     
@@ -81,14 +112,14 @@ class FeedCell: UICollectionViewCell {
         return iv
     }()
     
-//    lazy var usernameButton: UIButton = {
-//        let button = UIButton(type: .system)
-//        button.setTitle("Username", for: .normal)
-//        button.setTitleColor(.black, for: .normal)
-//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-//        button.addTarget(self, action: #selector(handleUsernameTapped), for: .touchUpInside)
-//        return button
-//    }()
+    lazy var usernameButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Username", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        button.addTarget(self, action: #selector(handleUsernameTapped), for: .touchUpInside)
+        return button
+    }()
     
 //    lazy var optionsButton: UIButton = {
 //        let button = UIButton(type: .system)
@@ -196,15 +227,55 @@ class FeedCell: UICollectionViewCell {
         return label
     }()
     
-//    let rankingItemImageUrlOneLabel: UILabel = {
-//        let label = UILabel()
-//        label.textColor = .black
-//        label.font = UIFont.boldSystemFont(ofSize: 12)
-//        label.text = "Ranking Title"
-//        return label
-//    }()
-    
     let rankingItemOneImageView: CustomImageView = {
+        let iv = CustomImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        iv.backgroundColor = .white
+        return iv
+    }()
+    
+    let rankingItemTitleTwoLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.text = "Ranking Title"
+        return label
+    }()
+    
+    let rankingItemTextTwoLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.text = "Ranking Title"
+        return label
+    }()
+    
+    let rankingItemTwoImageView: CustomImageView = {
+        let iv = CustomImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        iv.backgroundColor = .white
+        return iv
+    }()
+    
+    let rankingItemTitleThreeLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.text = "Ranking Title"
+        return label
+    }()
+    
+    let rankingItemTextThreeLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.text = "Ranking Title"
+        return label
+    }()
+    
+    let rankingItemThreeImageView: CustomImageView = {
         let iv = CustomImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
@@ -219,10 +290,10 @@ class FeedCell: UICollectionViewCell {
         profileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8 , paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
         profileImageView.layer.cornerRadius = 40 / 2
 
-//        addSubview(usernameButton)
-//        usernameButton.anchor(top: nil, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-//        usernameButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
-//
+        addSubview(usernameButton)
+        usernameButton.anchor(top: nil, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        usernameButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
+
 //        addSubview(optionsButton)
 //        optionsButton.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
 //        optionsButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
@@ -252,34 +323,72 @@ class FeedCell: UICollectionViewCell {
         rankingItemTextOneLabel.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         addSubview(rankingItemOneImageView)
-        rankingItemOneImageView.anchor(top: rankingItemTextOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 24, width: width, height: width)
+        rankingItemOneImageView.anchor(top: rankingItemTextOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: width, height: height)
         rankingItemOneImageView.contentMode = .scaleAspectFit
+//        rankingItemOneImageView.contentMode = .scaleAspectFill
+//        rankingItemOneImageView.contentMode = .scaleToFill
+        rankingItemOneImageView.clipsToBounds = true
+        
+        
+        addSubview(rankingItemTitleTwoLabel)
+        rankingItemTitleTwoLabel.anchor(top: rankingItemOneImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        addSubview(rankingItemTextTwoLabel)
+        rankingItemTextTwoLabel.anchor(top: rankingItemTitleTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        addSubview(rankingItemTwoImageView)
+        rankingItemTwoImageView.anchor(top: rankingItemTextTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: width, height: height)
+        rankingItemTwoImageView.contentMode = .scaleAspectFit
+        //        rankingItemOneImageView.contentMode = .scaleAspectFill
+        //        rankingItemOneImageView.contentMode = .scaleToFill
+        rankingItemTwoImageView.clipsToBounds = true
+        
+        
+        addSubview(rankingItemTitleThreeLabel)
+        rankingItemTitleThreeLabel.anchor(top: rankingItemTwoImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        addSubview(rankingItemTextThreeLabel)
+        rankingItemTextThreeLabel.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        addSubview(rankingItemThreeImageView)
+        rankingItemThreeImageView.anchor(top: rankingItemTextThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: width, height: height)
+        rankingItemThreeImageView.contentMode = .scaleAspectFit
+        //        rankingItemOneImageView.contentMode = .scaleAspectFill
+        //        rankingItemOneImageView.contentMode = .scaleToFill
+        rankingItemThreeImageView.clipsToBounds = true
+        
         
     }
     
     // MARK: - Handlers
 
     @objc func handleUsernameTapped() {
+        print("handleUsernameTapped")
 //        delegate?.handleUsernameTapped(for: self)
     }
 
     @objc func handleOptionsTapped() {
+        print("handleOptionsTapped")
 //        delegate?.handleOptionsTapped(for: self)
     }
 
     @objc func handleLikeTapped() {
+        print("handleLikeTapped")
 //        delegate?.handleLikeTapped(for: self, isDoubleTap: false)
     }
 
     @objc func handleCommentTapped() {
+        print("handleCommentTapped")
 //        delegate?.handleCommentTapped(for: self)
     }
 
     @objc func handleShowLikes() {
+        print("handleShowLikes")
 //        delegate?.handleShowLikes(for: self)
     }
 
     @objc func handleDoubleTapToLike() {
+        print("handleDoubleTapToLike")
 //        delegate?.handleLikeTapped(for: self, isDoubleTap: true)
     }
     

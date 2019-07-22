@@ -371,6 +371,10 @@ class AddRankVC: UIViewController, UITextViewDelegate, UITextFieldDelegate, UIIm
         let rankingImageTwo = rankingImageViewTwo.image ?? UIImage(named: "add_new_post_btn")!
         let rankingImageThree = rankingImageViewThree.image ?? UIImage(named: "add_new_post_btn")!
         
+//        guard let rankingImageOne = rankingImageViewOne.image else { return }
+//        guard let rankingImageTwo = rankingImageViewTwo.image else { return }
+//        guard let rankingImageThree = rankingImageViewThree.image else { return }
+        
         guard let rankingImageUploadDataOne = rankingImageOne.jpegData(compressionQuality: 0.5) else { return }
         guard let rankingImageUploadDataTwo = rankingImageTwo.jpegData(compressionQuality: 0.5) else { return }
         guard let rankingImageUploadDataThree = rankingImageThree.jpegData(compressionQuality: 0.5) else { return }

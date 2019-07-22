@@ -235,7 +235,7 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                             self.dismiss(animated: true, completion: nil)
                             
                             guard let userId = user?.user.uid else { return }
-                            Firestore.firestore().collection(USERS_REF).document(userId).setData([
+                            Firestore.firestore().collection(USERS).document(userId).setData([
                                 USERNAME: username,
                                 FULLNAME: fullName,
                                 PHOTOIMAGEURL_TXT: profileImaageURL,
