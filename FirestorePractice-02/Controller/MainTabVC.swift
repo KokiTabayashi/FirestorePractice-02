@@ -33,7 +33,8 @@ class MainTabVC: UITabBarController, UITabBarControllerDelegate {
         let searchRankVC = constructNavController(unselectedImage: UIImage(named: "searchbutton_deselected")!, selectedImage: UIImage(named: "searchbutton_selected")!, rootViewController: SearchRankVC())
         
         // add rank controller
-        let addRankVC = constructNavController(unselectedImage: UIImage(named: "add_button_deselected")!, selectedImage: UIImage(named: "add_button_selected")!, rootViewController: AddRankVC())
+//        let addRankVC = constructNavController(unselectedImage: UIImage(named: "add_button_deselected")!, selectedImage: UIImage(named: "add_button_selected")!, rootViewController: AddRankVC())
+        let addRankTableVC = constructNavController(unselectedImage: UIImage(named: "add_button_deselected")!, selectedImage: UIImage(named: "add_button_selected")!, rootViewController: AddRankTableVC())
         
         // notification controller
         let notificationVC = constructNavController(unselectedImage: UIImage(named: "notifications_deselected")!, selectedImage: UIImage(named: "notifications_selected")!, rootViewController: NotificationVC())
@@ -43,7 +44,8 @@ class MainTabVC: UITabBarController, UITabBarControllerDelegate {
 //        let profileVC = constructNavController(unselectedImage: UIImage(named: "profile_deselected")!, selectedImage: UIImage(named: "profile_selected")!, rootViewController: UserProfileVC(collectionViewLayout: UICollectionViewFlowLayout()))
         
         // view controller to be added to tab controller
-        viewControllers = [homeFeedVC, searchRankVC, addRankVC, notificationVC, profileVC]
+//        viewControllers = [homeFeedVC, searchRankVC, addRankVC, notificationVC, profileVC]
+        viewControllers = [homeFeedVC, searchRankVC, addRankTableVC, notificationVC, profileVC]
         
         // tab bar tint color
         tabBar.tintColor = .black
