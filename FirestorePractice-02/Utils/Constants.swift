@@ -42,4 +42,4 @@ let RANKING_REF = DB_REF.collection(RANKING_COLLECTION)
 let USER_REF = DB_REF.collection(USERS)
 
 // MARK: - Storage Reference
-let STORAGE_RANDINGS_IMAGES_REF = STORAGE_REF.child("rankings_images")
+let STORAGE_RANKINGS_IMAGES_REF = STORAGE_REF.child("rankings_images")

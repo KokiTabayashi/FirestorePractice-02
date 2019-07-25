@@ -381,13 +381,13 @@ class AddRankVC: UIViewController, UITextViewDelegate, UITextFieldDelegate, UIIm
         
         // update storage
         let filenameOne = NSUUID().uuidString
-        let storageRefOne = STORAGE_RANDINGS_IMAGES_REF.child(filenameOne)
+        let storageRefOne = STORAGE_RANKINGS_IMAGES_REF.child(filenameOne)
         
         let filenameTwo = NSUUID().uuidString
-        let storageRefTwo = STORAGE_RANDINGS_IMAGES_REF.child(filenameTwo)
+        let storageRefTwo = STORAGE_RANKINGS_IMAGES_REF.child(filenameTwo)
         
         let filenameThree = NSUUID().uuidString
-        let storageRefThree = STORAGE_RANDINGS_IMAGES_REF.child(filenameThree)
+        let storageRefThree = STORAGE_RANKINGS_IMAGES_REF.child(filenameThree)
         
         var ref: DocumentReference? = nil
         

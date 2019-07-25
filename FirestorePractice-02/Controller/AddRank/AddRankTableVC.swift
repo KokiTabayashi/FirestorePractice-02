@@ -9,17 +9,13 @@
 import UIKit
 import Firebase
 
-class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var ranking: Ranking!
     var ref: DocumentReference? = nil
-    
+    var imageSelected = false
+
     let addRankingBaseView: UIView = {
-        let view = UIView()
-        return view
-    } ()
-    
-    let addRankingItemBaseView: UIView = {
         let view = UIView()
         return view
     } ()
@@ -72,11 +68,17 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         return tv
     }()
     
-    let addRankingItemImageView: CustomImageView = {
+    lazy var addRankingItemImageView: CustomImageView = {
         let iv = CustomImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.backgroundColor = .lightGray
+        
+        let addRankingImageTap = UITapGestureRecognizer(target: self, action: #selector(handleRankingItemImageTapped))
+        addRankingImageTap.numberOfTapsRequired = 1
+        iv.isUserInteractionEnabled = true
+        iv.addGestureRecognizer(addRankingImageTap)
+        
         iv.heightAnchor.constraint(equalToConstant: 80.0).isActive = true
         iv.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
         return iv
@@ -139,6 +141,32 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // MARK: - Handler
     
+    @objc func handleRankingItemImageTapped() {
+        // configure image picker
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        
+        // present image picker
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        // selected image
+        guard let rankingImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
+            imageSelected = false
+            return
+        }
+        
+        // set imageSelected to true
+        imageSelected = true
+        
+        addRankingItemImageView.image = rankingImage
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @objc func addButtonTapped() {
         guard let currentUid = Auth.auth().currentUser?.uid else { return }
         guard let rankingTitleText = addRankingTextField.text else { return }
@@ -156,25 +184,44 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     self.addRankingItemTextField.isHidden = false
                     self.stackView.isHidden = false
                     self.addRankingTextField.text = ""
-
                 }
             }
         } else {
             guard let rankingItemTitleText = self.addRankingItemTextField.text else { return }
             guard let rankingItemText = addRankingItemTextView.text else { return }
-            RANKING_REF.document(ref!.documentID).collection(RANKING_ITEM_COLLECTION).addDocument(data: [
-                RANKING_ITEM_TITLE: rankingItemTitleText,
-                RANKING_ITEM_IMAGE_URL: "",
-                RANKING_ITEM_TEXT: rankingItemText,
-                RANKING_ITEM_CREATED_DATE: FieldValue.serverTimestamp()
-                ], completion: { (err) in
-                    if let err = err {
-                        debugPrint("Error adding document: \(err)")
-                    } else {
-                        self.addRankingItemTextField.text = ""
-                        self.addRankingItemTextView.text = ""
+            let rankingImage = self.addRankingItemImageView.image ?? UIImage(named: "add_new_post_btn")
+            guard let rankingImageUploadData = rankingImage?.jpegData(compressionQuality: 0.5) else { return }
+            
+            // update storage
+            let filename = NSUUID().uuidString
+            let storageRef = STORAGE_RANKINGS_IMAGES_REF.child(filename)
+            
+            storageRef.putData(rankingImageUploadData, metadata: nil) { (metadata, error) in
+                if let error = error {
+                    print("Failed to upload image to storage with error: ", error.localizedDescription)
+                }
+                
+                storageRef.downloadURL(completion: { (url, error) in
+                    guard let profileImageUrl = url?.absoluteString else {
+                        print("DEBUG: Profile image url is nil")
+                        return
                     }
-            })
+                    RANKING_REF.document(self.ref!.documentID).collection(RANKING_ITEM_COLLECTION).addDocument(data: [
+                        RANKING_ITEM_TITLE: rankingItemTitleText,
+                        RANKING_ITEM_IMAGE_URL: profileImageUrl,
+                        RANKING_ITEM_TEXT: rankingItemText,
+                        RANKING_ITEM_CREATED_DATE: FieldValue.serverTimestamp()
+                        ], completion: { (err) in
+                            if let err = err {
+                                debugPrint("Error adding document: \(err)")
+                            } else {
+                                self.addRankingItemTextField.text = ""
+                                self.addRankingItemTextView.text = ""
+                                self.addRankingItemImageView.image = nil
+                            }
+                    })
+                })
+            }
         }
     }
     

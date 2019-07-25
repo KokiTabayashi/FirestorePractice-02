@@ -69,15 +69,15 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     
     // MARK: - UICollectionViewDataSource
     
-    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        //        if posts.count > (PAGINATION_FEED_VC - 1) {
-        print("willDisplay")
-        if rankings.count > 4 {
-            if indexPath.item == rankings.count - 1 {
-                fetchPosts()
-            }
-        }
-    }
+//    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        //        if posts.count > (PAGINATION_FEED_VC - 1) {
+//        print("willDisplay")
+//        if rankings.count > 4 {
+//            if indexPath.item == rankings.count - 1 {
+//                fetchPosts()
+//            }
+//        }
+//    }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
