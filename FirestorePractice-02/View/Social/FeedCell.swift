@@ -59,6 +59,10 @@ class FeedCell: UICollectionViewCell {
             rankingTitleLabel.text = rankingTitle
             rankingCreatedDateLabel.text = rankingCreatedDate.timeAgoToDisplay()
             
+            //
+            // Need to implement some process to prevent crash if the data is null (like enter "no data" or something)
+            //
+            
             guard let rankingItemTitleOne = rankingItems[0].rankingItemTitle else { return }
             guard let rankingItemTextOne = rankingItems[0].rankingItemText else { return }
             guard let rankingItemImageUrlOne = rankingItems[0].rankingItemImageUrl else { return }
