@@ -236,6 +236,8 @@ class FeedCell: UICollectionViewCell {
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.backgroundColor = .white
+        iv.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
+        iv.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
         return iv
     }()
     
@@ -260,6 +262,8 @@ class FeedCell: UICollectionViewCell {
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.backgroundColor = .white
+        iv.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
+        iv.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
         return iv
     }()
     
@@ -284,8 +288,15 @@ class FeedCell: UICollectionViewCell {
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.backgroundColor = .white
+        iv.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
+        iv.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
         return iv
     }()
+    
+    lazy var stackViewRankingItemOne = UIStackView(arrangedSubviews: [rankingItemOneImageView, rankingItemTextOneLabel])
+    lazy var stackViewRankingItemTwo = UIStackView(arrangedSubviews: [rankingItemTwoImageView, rankingItemTextTwoLabel])
+    lazy var stackViewRankingItemThree = UIStackView(arrangedSubviews: [rankingItemThreeImageView, rankingItemTextThreeLabel])
+
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -323,44 +334,65 @@ class FeedCell: UICollectionViewCell {
         addSubview(rankingItemTitleOneLabel)
         rankingItemTitleOneLabel.anchor(top: rankingCreatedDateLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        addSubview(rankingItemTextOneLabel)
-        rankingItemTextOneLabel.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+//        addSubview(rankingItemTextOneLabel)
+//        rankingItemTextOneLabel.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+//
+//        addSubview(rankingItemOneImageView)
+//        rankingItemOneImageView.anchor(top: rankingItemTextOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: width, height: height)
+//        rankingItemOneImageView.contentMode = .scaleAspectFit
+////        rankingItemOneImageView.contentMode = .scaleAspectFill
+////        rankingItemOneImageView.contentMode = .scaleToFill
+//        rankingItemOneImageView.clipsToBounds = true
         
-        addSubview(rankingItemOneImageView)
-        rankingItemOneImageView.anchor(top: rankingItemTextOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: width, height: height)
-        rankingItemOneImageView.contentMode = .scaleAspectFit
-//        rankingItemOneImageView.contentMode = .scaleAspectFill
-//        rankingItemOneImageView.contentMode = .scaleToFill
-        rankingItemOneImageView.clipsToBounds = true
+        stackViewRankingItemOne.axis = .horizontal
+        stackViewRankingItemOne.distribution = .fill
+        stackViewRankingItemOne.spacing = 6.0
         
+        addSubview(stackViewRankingItemOne)
+        stackViewRankingItemOne.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+//        addSubview(rankingItemTitleTwoLabel)
+//        rankingItemTitleTwoLabel.anchor(top: rankingItemOneImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         addSubview(rankingItemTitleTwoLabel)
-        rankingItemTitleTwoLabel.anchor(top: rankingItemOneImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        rankingItemTitleTwoLabel.anchor(top: stackViewRankingItemOne.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        addSubview(rankingItemTextTwoLabel)
-        rankingItemTextTwoLabel.anchor(top: rankingItemTitleTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+//        addSubview(rankingItemTextTwoLabel)
+//        rankingItemTextTwoLabel.anchor(top: rankingItemTitleTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+//
+//        addSubview(rankingItemTwoImageView)
+//        rankingItemTwoImageView.anchor(top: rankingItemTextTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: width, height: height)
+//        rankingItemTwoImageView.contentMode = .scaleAspectFit
+//        //        rankingItemOneImageView.contentMode = .scaleAspectFill
+//        //        rankingItemOneImageView.contentMode = .scaleToFill
+//        rankingItemTwoImageView.clipsToBounds = true
         
-        addSubview(rankingItemTwoImageView)
-        rankingItemTwoImageView.anchor(top: rankingItemTextTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: width, height: height)
-        rankingItemTwoImageView.contentMode = .scaleAspectFit
-        //        rankingItemOneImageView.contentMode = .scaleAspectFill
-        //        rankingItemOneImageView.contentMode = .scaleToFill
-        rankingItemTwoImageView.clipsToBounds = true
+        stackViewRankingItemTwo.axis = .horizontal
+        stackViewRankingItemTwo.distribution = .fill
+        stackViewRankingItemTwo.spacing = 6.0
         
+        addSubview(stackViewRankingItemTwo)
+        stackViewRankingItemTwo.anchor(top: rankingItemTitleTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         addSubview(rankingItemTitleThreeLabel)
-        rankingItemTitleThreeLabel.anchor(top: rankingItemTwoImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        rankingItemTitleThreeLabel.anchor(top: stackViewRankingItemTwo.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        addSubview(rankingItemTextThreeLabel)
-        rankingItemTextThreeLabel.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+//        addSubview(rankingItemTextThreeLabel)
+//        rankingItemTextThreeLabel.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+//
+//        addSubview(rankingItemThreeImageView)
+//        rankingItemThreeImageView.anchor(top: rankingItemTextThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: width, height: height)
+//        rankingItemThreeImageView.contentMode = .scaleAspectFit
+//        //        rankingItemOneImageView.contentMode = .scaleAspectFill
+//        //        rankingItemOneImageView.contentMode = .scaleToFill
+//        rankingItemThreeImageView.clipsToBounds = true
         
-        addSubview(rankingItemThreeImageView)
-        rankingItemThreeImageView.anchor(top: rankingItemTextThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: width, height: height)
-        rankingItemThreeImageView.contentMode = .scaleAspectFit
-        //        rankingItemOneImageView.contentMode = .scaleAspectFill
-        //        rankingItemOneImageView.contentMode = .scaleToFill
-        rankingItemThreeImageView.clipsToBounds = true
+        stackViewRankingItemThree.axis = .horizontal
+        stackViewRankingItemThree.distribution = .fill
+        stackViewRankingItemThree.spacing = 6.0
         
+        addSubview(stackViewRankingItemThree)
+        stackViewRankingItemThree.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
     }
     
