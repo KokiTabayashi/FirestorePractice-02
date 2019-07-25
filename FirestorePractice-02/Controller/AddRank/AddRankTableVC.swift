@@ -80,6 +80,8 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         return iv
     }()
     
+    lazy var stackView = UIStackView(arrangedSubviews: [addRankingItemImageView, addRankingItemTextView])
+    
     lazy var addButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Add", for: .normal)
@@ -104,31 +106,33 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         
         view.addSubview(tableView)
-        view.addSubview(addRankingItemBaseView)
-        addRankingItemBaseView.anchor(top: tableView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 80, paddingRight: 0, width: 0, height: 250)
-        addRankingItemBaseView.backgroundColor = .white
+        view.addSubview(addRankingBaseView)
+        addRankingBaseView.anchor(top: tableView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 80, paddingRight: 0, width: 0, height: 250)
+        addRankingBaseView.backgroundColor = .white
         
-        addRankingItemBaseView.addSubview(addRankingTextField)
-        addRankingTextField.anchor(top: addRankingItemBaseView.topAnchor, left: addRankingItemBaseView.leftAnchor, bottom: nil, right: addRankingItemBaseView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+        addRankingBaseView.addSubview(addRankingTextField)
+        addRankingTextField.anchor(top: addRankingBaseView.topAnchor, left: addRankingBaseView.leftAnchor, bottom: nil, right: addRankingBaseView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
         addRankingTextField.isHidden = false
         
-        addRankingItemBaseView.addSubview(addRankingItemTextField)
-        addRankingItemTextField.anchor(top: addRankingItemBaseView.topAnchor, left: addRankingItemBaseView.leftAnchor, bottom: nil, right: addRankingItemBaseView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+        addRankingBaseView.addSubview(addRankingItemTextField)
+        addRankingItemTextField.anchor(top: addRankingBaseView.topAnchor, left: addRankingBaseView.leftAnchor, bottom: nil, right: addRankingBaseView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
         addRankingItemTextField.isHidden = true
-        
-        addRankingItemBaseView.addSubview(stackViewBaseView)
-        stackViewBaseView.anchor(top: addRankingItemTextField.bottomAnchor, left: addRankingItemBaseView.leftAnchor, bottom: nil, right: addRankingItemBaseView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
-        stackViewBaseView.isHidden = true
-        
-        let stackView = UIStackView(arrangedSubviews: [addRankingItemImageView, addRankingItemTextView])
+
+//        addRankingBaseView.addSubview(stackViewBaseView)
+//        stackViewBaseView.anchor(top: addRankingItemTextField.bottomAnchor, left: addRankingBaseView.leftAnchor, bottom: nil, right: addRankingBaseView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
+//        stackViewBaseView.isHidden = true
+//        stackViewBaseView.backgroundColor = .lightGray
+
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
-        stackViewBaseView.addSubview(stackView)
-        stackView.anchor(top: stackViewBaseView.topAnchor, left: stackViewBaseView.leftAnchor, bottom: stackViewBaseView.bottomAnchor, right: stackViewBaseView.rightAnchor, paddingTop: 2, paddingLeft: 2, paddingBottom: 2, paddingRight: 2, width: 0, height: 0)
-        stackView.backgroundColor = .lightGray
+        addRankingBaseView.addSubview(stackView)
+//        stackView.anchor(top: stackViewBaseView.topAnchor, left: stackViewBaseView.leftAnchor, bottom: stackViewBaseView.bottomAnchor, right: stackViewBaseView.rightAnchor, paddingTop: 2, paddingLeft: 2, paddingBottom: 2, paddingRight: 2, width: 0, height: 0)
+        stackView.anchor(top: addRankingItemTextField.bottomAnchor, left: addRankingBaseView.leftAnchor, bottom: nil, right: addRankingBaseView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
+        stackView.backgroundColor = .blue
+        stackView.isHidden = true
         
-        addRankingItemBaseView.addSubview(addButton)
-        addButton.anchor(top: nil, left: addRankingItemBaseView.leftAnchor, bottom: addRankingItemBaseView.bottomAnchor, right: addRankingItemBaseView.rightAnchor, paddingTop: 0, paddingLeft: 4, paddingBottom: 4, paddingRight: 4, width: 0, height: 0)
+        addRankingBaseView.addSubview(addButton)
+        addButton.anchor(top: stackView.bottomAnchor, left: addRankingBaseView.leftAnchor, bottom: addRankingBaseView.bottomAnchor, right: addRankingBaseView.rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4, width: 0, height: 0)
     }
     
     // MARK: - Handler
@@ -148,8 +152,9 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 } else {
                     self.addRankingTextField.isHidden = true
                     self.addRankingItemTextField.isHidden = false
-                    self.stackViewBaseView.isHidden = false
+                    self.stackView.isHidden = false
                     self.addRankingTextField.text = ""
+
                 }
             }
         } else {
@@ -165,6 +170,7 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                         debugPrint("Error adding document: \(err)")
                     } else {
                         self.addRankingItemTextField.text = ""
+                        self.addRankingItemTextView.text = ""
                     }
             })
         }
