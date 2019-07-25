@@ -77,6 +77,8 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.backgroundColor = .lightGray
+        iv.heightAnchor.constraint(equalToConstant: 80.0).isActive = true
+        iv.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
         return iv
     }()
     
@@ -124,10 +126,10 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        stackViewBaseView.backgroundColor = .lightGray
 
         stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fill
         addRankingBaseView.addSubview(stackView)
 //        stackView.anchor(top: stackViewBaseView.topAnchor, left: stackViewBaseView.leftAnchor, bottom: stackViewBaseView.bottomAnchor, right: stackViewBaseView.rightAnchor, paddingTop: 2, paddingLeft: 2, paddingBottom: 2, paddingRight: 2, width: 0, height: 0)
-        stackView.anchor(top: addRankingItemTextField.bottomAnchor, left: addRankingBaseView.leftAnchor, bottom: nil, right: addRankingBaseView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
+        stackView.anchor(top: addRankingItemTextField.bottomAnchor, left: addRankingBaseView.leftAnchor, bottom: nil, right: addRankingBaseView.rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
         stackView.backgroundColor = .blue
         stackView.isHidden = true
         
