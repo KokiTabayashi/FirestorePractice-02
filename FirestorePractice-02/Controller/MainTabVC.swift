@@ -34,7 +34,8 @@ class MainTabVC: UITabBarController, UITabBarControllerDelegate {
         
         // add rank controller
 //        let addRankVC = constructNavController(unselectedImage: UIImage(named: "add_button_deselected")!, selectedImage: UIImage(named: "add_button_selected")!, rootViewController: AddRankVC())
-        let addRankTableVC = constructNavController(unselectedImage: UIImage(named: "add_button_deselected")!, selectedImage: UIImage(named: "add_button_selected")!, rootViewController: AddRankTableVC())
+//        let addRankTableVC = constructNavController(unselectedImage: UIImage(named: "add_button_deselected")!, selectedImage: UIImage(named: "add_button_selected")!, rootViewController: AddRankTableVC())
+        let addRankTableVC = constructNavController(unselectedImage: UIImage(named: "add_button_deselected")!, selectedImage: UIImage(named: "add_button_selected")!)
         
         // notification controller
         let notificationVC = constructNavController(unselectedImage: UIImage(named: "notifications_deselected")!, selectedImage: UIImage(named: "notifications_selected")!, rootViewController: NotificationVC())
@@ -62,6 +63,19 @@ class MainTabVC: UITabBarController, UITabBarControllerDelegate {
         
         // return nav controller
         return navController
+    }
+    
+    // MARK: - UITabBar
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        let index = viewControllers?.firstIndex(of: viewController)
+        
+        if index == 2 {
+            let addRankTableVC = AddRankTableVC()
+            let navController = UINavigationController(rootViewController: addRankTableVC)
+            present(navController, animated: true, completion: nil)
+            return false
+        }
+        return true
     }
     
     // MARK: - API

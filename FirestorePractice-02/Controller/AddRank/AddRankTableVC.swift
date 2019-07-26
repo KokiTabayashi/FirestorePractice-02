@@ -108,13 +108,13 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         addRankingItemTextField.delegate = self
 
         let tableView = UITableView()
-        tableView.frame = CGRect(x: 0, y: 0, width: frameWidth, height: frameHeight - 250)
+        tableView.frame = CGRect(x: 0, y: 0, width: frameWidth, height: frameHeight - 150)
         tableView.dataSource = self
         tableView.delegate = self
         
         view.addSubview(tableView)
         view.addSubview(addRankingBaseView)
-        addRankingBaseView.anchor(top: tableView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 80, paddingRight: 0, width: 0, height: 250)
+        addRankingBaseView.anchor(top: tableView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 150)
         addRankingBaseView.backgroundColor = .white
         
         addRankingBaseView.addSubview(addRankingTextField)
@@ -142,6 +142,7 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         addButton.anchor(top: stackView.bottomAnchor, left: addRankingBaseView.leftAnchor, bottom: addRankingBaseView.bottomAnchor, right: addRankingBaseView.rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4, width: 0, height: 0)
         
         view.bindToKeyboard()
+        configureNavigationButtons()
     }
     
     // MARK: - Handler
@@ -149,6 +150,16 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 //        addRankingBaseView.endEditing(true)
 //    }
+    
+    func configureNavigationButtons() {
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(handleNext))
+    }
+    
+    @objc func handleCancel() {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         addRankingTextField.resignFirstResponder()
