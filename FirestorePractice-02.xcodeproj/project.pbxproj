@@ -20,6 +20,7 @@
 		E7A07D9622E6DC72008AF528 /* AddRankCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A07D9522E6DC72008AF528 /* AddRankCollectionVC.swift */; };
 		E7A07D9822E6DD37008AF528 /* AddRankTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A07D9722E6DD37008AF528 /* AddRankTableVC.swift */; };
 		E7A07D9A22E6F933008AF528 /* Parts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A07D9922E6F933008AF528 /* Parts.swift */; };
+		E7B4EEF022EACD5000099631 /* KeyboardBoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B4EEEF22EACD5000099631 /* KeyboardBoundView.swift */; };
 		E7D7FB2622D7E90500C4FE97 /* HomeFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D7FB2522D7E90500C4FE97 /* HomeFeedVC.swift */; };
 		E7D7FB2822D7EDBB00C4FE97 /* SearchRankVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D7FB2722D7EDBB00C4FE97 /* SearchRankVC.swift */; };
 		E7D7FB2A22D7F54000C4FE97 /* AddRankVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D7FB2922D7F54000C4FE97 /* AddRankVC.swift */; };
@@ -54,6 +55,7 @@
 		E7A07D9522E6DC72008AF528 /* AddRankCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRankCollectionVC.swift; sourceTree = "<group>"; };
 		E7A07D9722E6DD37008AF528 /* AddRankTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRankTableVC.swift; sourceTree = "<group>"; };
 		E7A07D9922E6F933008AF528 /* Parts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parts.swift; sourceTree = "<group>"; };
+		E7B4EEEF22EACD5000099631 /* KeyboardBoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardBoundView.swift; sourceTree = "<group>"; };
 		E7D7FB2522D7E90500C4FE97 /* HomeFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedVC.swift; sourceTree = "<group>"; };
 		E7D7FB2722D7EDBB00C4FE97 /* SearchRankVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRankVC.swift; sourceTree = "<group>"; };
 		E7D7FB2922D7F54000C4FE97 /* AddRankVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRankVC.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				E7D7FB3422D894A400C4FE97 /* Protocols.swift */,
 				E7D7FB4122DA8FFF00C4FE97 /* CustomImageView.swift */,
 				E7A07D9922E6F933008AF528 /* Parts.swift */,
+				E7B4EEEF22EACD5000099631 /* KeyboardBoundView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 			files = (
 				E7D7FB3922D8951200C4FE97 /* UserProfileHeader.swift in Sources */,
 				E7D7FB2822D7EDBB00C4FE97 /* SearchRankVC.swift in Sources */,
+				E7B4EEF022EACD5000099631 /* KeyboardBoundView.swift in Sources */,
 				E7D7FB3322D84D8300C4FE97 /* Constants.swift in Sources */,
 				E7D7FB2A22D7F54000C4FE97 /* AddRankVC.swift in Sources */,
 				E7D7FB3522D894A400C4FE97 /* Protocols.swift in Sources */,

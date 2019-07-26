@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     var ranking: Ranking!
     var ref: DocumentReference? = nil
@@ -103,6 +103,9 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let frameWidth = view.frame.width
         let frameHeight = view.frame.height
+        
+        addRankingTextField.delegate = self
+        addRankingItemTextField.delegate = self
 
         let tableView = UITableView()
         tableView.frame = CGRect(x: 0, y: 0, width: frameWidth, height: frameHeight - 250)
@@ -137,9 +140,21 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         addRankingBaseView.addSubview(addButton)
         addButton.anchor(top: stackView.bottomAnchor, left: addRankingBaseView.leftAnchor, bottom: addRankingBaseView.bottomAnchor, right: addRankingBaseView.rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4, width: 0, height: 0)
+        
+        addRankingBaseView.bindToKeyboard()
     }
     
     // MARK: - Handler
+    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        addRankingBaseView.endEditing(true)
+//    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addRankingTextField.resignFirstResponder()
+        addRankingItemTextField.resignFirstResponder()
+        return true
+    }
     
     @objc func handleRankingItemImageTapped() {
         // configure image picker
@@ -184,6 +199,7 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     self.addRankingItemTextField.isHidden = false
                     self.stackView.isHidden = false
                     self.addRankingTextField.text = ""
+                    self.addRankingBaseView.endEditing(true)
                 }
             }
         } else {
@@ -218,6 +234,7 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                                 self.addRankingItemTextField.text = ""
                                 self.addRankingItemTextView.text = ""
                                 self.addRankingItemImageView.image = nil
+                                self.addRankingBaseView.endEditing(true)
                             }
                     })
                 })
