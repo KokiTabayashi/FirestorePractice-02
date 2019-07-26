@@ -141,7 +141,7 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         addRankingBaseView.addSubview(addButton)
         addButton.anchor(top: stackView.bottomAnchor, left: addRankingBaseView.leftAnchor, bottom: addRankingBaseView.bottomAnchor, right: addRankingBaseView.rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4, width: 0, height: 0)
         
-        addRankingBaseView.bindToKeyboard()
+        view.bindToKeyboard()
     }
     
     // MARK: - Handler
