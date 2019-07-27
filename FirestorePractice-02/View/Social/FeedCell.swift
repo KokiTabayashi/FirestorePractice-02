@@ -202,7 +202,7 @@ class FeedCell: UICollectionViewCell {
     let rankingTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.text = "Ranking Title"
         return label
     }()
@@ -218,7 +218,7 @@ class FeedCell: UICollectionViewCell {
     let rankingItemTitleOneLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.text = "Ranking Title"
         return label
     }()
@@ -228,6 +228,8 @@ class FeedCell: UICollectionViewCell {
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.text = "Ranking Title"
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         return label
     }()
     
@@ -244,7 +246,7 @@ class FeedCell: UICollectionViewCell {
     let rankingItemTitleTwoLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.text = "Ranking Title"
         return label
     }()
@@ -254,6 +256,8 @@ class FeedCell: UICollectionViewCell {
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.text = "Ranking Title"
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         return label
     }()
     
@@ -270,7 +274,7 @@ class FeedCell: UICollectionViewCell {
     let rankingItemTitleThreeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.text = "Ranking Title"
         return label
     }()
@@ -280,6 +284,8 @@ class FeedCell: UICollectionViewCell {
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.text = "Ranking Title"
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         return label
     }()
     
@@ -349,7 +355,7 @@ class FeedCell: UICollectionViewCell {
         stackViewRankingItemOne.spacing = 6.0
         
         addSubview(stackViewRankingItemOne)
-        stackViewRankingItemOne.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        stackViewRankingItemOne.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
 //        addSubview(rankingItemTitleTwoLabel)
 //        rankingItemTitleTwoLabel.anchor(top: rankingItemOneImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
@@ -372,7 +378,7 @@ class FeedCell: UICollectionViewCell {
         stackViewRankingItemTwo.spacing = 6.0
         
         addSubview(stackViewRankingItemTwo)
-        stackViewRankingItemTwo.anchor(top: rankingItemTitleTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        stackViewRankingItemTwo.anchor(top: rankingItemTitleTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         addSubview(rankingItemTitleThreeLabel)
         rankingItemTitleThreeLabel.anchor(top: stackViewRankingItemTwo.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
@@ -392,7 +398,7 @@ class FeedCell: UICollectionViewCell {
         stackViewRankingItemThree.spacing = 6.0
         
         addSubview(stackViewRankingItemThree)
-        stackViewRankingItemThree.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        stackViewRankingItemThree.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
     }
     
