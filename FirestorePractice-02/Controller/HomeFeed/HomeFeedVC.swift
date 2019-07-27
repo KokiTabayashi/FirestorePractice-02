@@ -154,14 +154,15 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
         fetchPosts()
         collectionView?.reloadData()
     }
-
+    
     func configureNavigationBar() {
-//        if !viewSinglePost {
-            // left button
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
-            // right button
-//            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "send2"), style: .plain, target: self, action: #selector(handleShowMessages))
-//        }
+        //        if !viewSinglePost {
+        // left button
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        self.navigationItem.leftBarButtonItem?.tintColor = .darkGray
+        // right button
+        //            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "send2"), style: .plain, target: self, action: #selector(handleShowMessages))
+        //        }
         self.navigationItem.title = "Home"
     }
     

@@ -154,6 +154,7 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func configureNavigationButtons() {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        navigationItem.leftBarButtonItem?.tintColor = .darkGray
 //        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(handleNext))
     }
     
