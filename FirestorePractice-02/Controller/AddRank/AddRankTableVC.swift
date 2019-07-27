@@ -242,13 +242,17 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         addRankingTextField.delegate = self
         addRankingItemTextField.delegate = self
         
+        view.addSubview(rankingTitleLabel)
+        rankingTitleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
+        
         // tableView
         let tableView = UITableView()
         tableView.frame = CGRect(x: 0, y: 0, width: frameWidth, height: frameHeight - 150)
+//        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         tableView.dataSource = self
         tableView.delegate = self
-        
         view.addSubview(tableView)
+        
         view.addSubview(addRankingBaseView)
         addRankingBaseView.anchor(top: tableView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 150)
         addRankingBaseView.backgroundColor = .white
