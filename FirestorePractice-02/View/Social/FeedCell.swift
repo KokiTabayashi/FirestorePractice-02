@@ -307,48 +307,54 @@ class FeedCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        configureView()
+    }
+    
+    // MARK: - Handlers
+    
+    func configureView() {
         addSubview(profileImageView)
         profileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8 , paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
         profileImageView.layer.cornerRadius = 40 / 2
-
+        
         addSubview(usernameButton)
         usernameButton.anchor(top: nil, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         usernameButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
-
-//        addSubview(optionsButton)
-//        optionsButton.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
-//        optionsButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
-//
-//        addSubview(postImageView)
-//        postImageView.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-//        postImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
         
-//        configureActionButtons()
-//
-//        addSubview(likesLabel)
-//        likesLabel.anchor(top: likeButton.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: -4, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        //        addSubview(optionsButton)
+        //        optionsButton.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+        //        optionsButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
+        //
+        //        addSubview(postImageView)
+        //        postImageView.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        //        postImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
         
-//        addSubview(captionLabel)
-//        captionLabel.anchor(top: likesLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+        //        configureActionButtons()
+        //
+        //        addSubview(likesLabel)
+        //        likesLabel.anchor(top: likeButton.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: -4, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        //        addSubview(captionLabel)
+        //        captionLabel.anchor(top: likesLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
         
         addSubview(rankingTitleLabel)
         rankingTitleLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 12, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
-
+        
         addSubview(rankingCreatedDateLabel)
         rankingCreatedDateLabel.anchor(top: rankingTitleLabel.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
         
         addSubview(rankingItemTitleOneLabel)
         rankingItemTitleOneLabel.anchor(top: rankingCreatedDateLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-//        addSubview(rankingItemTextOneLabel)
-//        rankingItemTextOneLabel.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-//
-//        addSubview(rankingItemOneImageView)
-//        rankingItemOneImageView.anchor(top: rankingItemTextOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: width, height: height)
-//        rankingItemOneImageView.contentMode = .scaleAspectFit
-////        rankingItemOneImageView.contentMode = .scaleAspectFill
-////        rankingItemOneImageView.contentMode = .scaleToFill
-//        rankingItemOneImageView.clipsToBounds = true
+        //        addSubview(rankingItemTextOneLabel)
+        //        rankingItemTextOneLabel.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        //
+        //        addSubview(rankingItemOneImageView)
+        //        rankingItemOneImageView.anchor(top: rankingItemTextOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: width, height: height)
+        //        rankingItemOneImageView.contentMode = .scaleAspectFit
+        ////        rankingItemOneImageView.contentMode = .scaleAspectFill
+        ////        rankingItemOneImageView.contentMode = .scaleToFill
+        //        rankingItemOneImageView.clipsToBounds = true
         
         stackViewRankingItemOne.axis = .horizontal
         stackViewRankingItemOne.distribution = .fill
@@ -357,21 +363,21 @@ class FeedCell: UICollectionViewCell {
         addSubview(stackViewRankingItemOne)
         stackViewRankingItemOne.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-//        addSubview(rankingItemTitleTwoLabel)
-//        rankingItemTitleTwoLabel.anchor(top: rankingItemOneImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        //        addSubview(rankingItemTitleTwoLabel)
+        //        rankingItemTitleTwoLabel.anchor(top: rankingItemOneImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         addSubview(rankingItemTitleTwoLabel)
         rankingItemTitleTwoLabel.anchor(top: stackViewRankingItemOne.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-//        addSubview(rankingItemTextTwoLabel)
-//        rankingItemTextTwoLabel.anchor(top: rankingItemTitleTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-//
-//        addSubview(rankingItemTwoImageView)
-//        rankingItemTwoImageView.anchor(top: rankingItemTextTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: width, height: height)
-//        rankingItemTwoImageView.contentMode = .scaleAspectFit
-//        //        rankingItemOneImageView.contentMode = .scaleAspectFill
-//        //        rankingItemOneImageView.contentMode = .scaleToFill
-//        rankingItemTwoImageView.clipsToBounds = true
+        //        addSubview(rankingItemTextTwoLabel)
+        //        rankingItemTextTwoLabel.anchor(top: rankingItemTitleTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        //
+        //        addSubview(rankingItemTwoImageView)
+        //        rankingItemTwoImageView.anchor(top: rankingItemTextTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: width, height: height)
+        //        rankingItemTwoImageView.contentMode = .scaleAspectFit
+        //        //        rankingItemOneImageView.contentMode = .scaleAspectFill
+        //        //        rankingItemOneImageView.contentMode = .scaleToFill
+        //        rankingItemTwoImageView.clipsToBounds = true
         
         stackViewRankingItemTwo.axis = .horizontal
         stackViewRankingItemTwo.distribution = .fill
@@ -383,15 +389,15 @@ class FeedCell: UICollectionViewCell {
         addSubview(rankingItemTitleThreeLabel)
         rankingItemTitleThreeLabel.anchor(top: stackViewRankingItemTwo.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-//        addSubview(rankingItemTextThreeLabel)
-//        rankingItemTextThreeLabel.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-//
-//        addSubview(rankingItemThreeImageView)
-//        rankingItemThreeImageView.anchor(top: rankingItemTextThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: width, height: height)
-//        rankingItemThreeImageView.contentMode = .scaleAspectFit
-//        //        rankingItemOneImageView.contentMode = .scaleAspectFill
-//        //        rankingItemOneImageView.contentMode = .scaleToFill
-//        rankingItemThreeImageView.clipsToBounds = true
+        //        addSubview(rankingItemTextThreeLabel)
+        //        rankingItemTextThreeLabel.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        //
+        //        addSubview(rankingItemThreeImageView)
+        //        rankingItemThreeImageView.anchor(top: rankingItemTextThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: width, height: height)
+        //        rankingItemThreeImageView.contentMode = .scaleAspectFit
+        //        //        rankingItemOneImageView.contentMode = .scaleAspectFill
+        //        //        rankingItemOneImageView.contentMode = .scaleToFill
+        //        rankingItemThreeImageView.clipsToBounds = true
         
         stackViewRankingItemThree.axis = .horizontal
         stackViewRankingItemThree.distribution = .fill
@@ -399,10 +405,7 @@ class FeedCell: UICollectionViewCell {
         
         addSubview(stackViewRankingItemThree)
         stackViewRankingItemThree.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
     }
-    
-    // MARK: - Handlers
 
     @objc func handleUsernameTapped() {
         print("handleUsernameTapped")
