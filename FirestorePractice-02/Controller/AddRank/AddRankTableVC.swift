@@ -34,9 +34,9 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     let rankingTitleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 12)
-        label.text = "Ranking Title"
+        label.backgroundColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.text = "Let's add new ranking!"
         return label
     }()
     
@@ -240,6 +240,8 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func configureView() {
+        view.backgroundColor = .white
+        
         let frameWidth = view.frame.width
         let frameHeight = view.frame.height
         
@@ -247,7 +249,7 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         addRankingItemTextField.delegate = self
         
         view.addSubview(rankingTitleLabel)
-        rankingTitleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
+        rankingTitleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
         
         // tableView
         tableView.frame = CGRect(x: 0, y: 0, width: frameWidth, height: frameHeight - 150)
@@ -260,6 +262,9 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.estimatedRowHeight = UITableView.automaticDimension
         view.addSubview(tableView)
 //        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // test
+        tableView.anchor(top: rankingTitleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         view.addSubview(addRankingBaseView)
         addRankingBaseView.anchor(top: tableView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 150)
