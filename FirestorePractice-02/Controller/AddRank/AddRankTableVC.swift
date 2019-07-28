@@ -15,9 +15,12 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     var rankingItems = [RankingItem]()
     var ref: DocumentReference? = nil
     var imageSelected = false
+    let reuseIdentifier = "TableCell"
     
     // listener
     var listener : ListenerRegistration!
+    
+    let tableView = UITableView()
     
     let addRankingBaseView: UIView = {
         let view = UIView()
@@ -129,7 +132,7 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func configureNavigationButtons() {
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(handleCancel))
         navigationItem.leftBarButtonItem?.tintColor = .darkGray
 //        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(handleNext))
     }
@@ -229,6 +232,7 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                                 self.rankingItems.append(newRankingItem)
                                 self.ranking = Ranking(rankingOwnerId: self.ranking.rankingOwnerId, rankingTitle: self.ranking.rankingTitle, rankingCreatedDate: self.ranking.rankingCreatedDate, rankingItems: self.rankingItems)
                             }
+                            self.tableView.reloadData()
                     })
                 })
             }
@@ -246,12 +250,16 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         rankingTitleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
         
         // tableView
-        let tableView = UITableView()
         tableView.frame = CGRect(x: 0, y: 0, width: frameWidth, height: frameHeight - 150)
 //        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.register(RankingCell.self, forCellReuseIdentifier: reuseIdentifier)
+//        tableView.rowHeight = UITableView.automaticDimension
+//        tableView.estimatedRowHeight = 600
+        tableView.estimatedRowHeight = UITableView.automaticDimension
         view.addSubview(tableView)
+//        tableView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(addRankingBaseView)
         addRankingBaseView.anchor(top: tableView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 150)
@@ -285,13 +293,27 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // MARK: -  UITableView
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+//        if rankingItems.count > 0 {
+            return rankingItems.count
+//        }
+//        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
+        if rankingItems.count > 0 {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? RankingCell {
+                print("*** DEBUG *** ranking Items.count: \(rankingItems.count)")
+                print("*** DEBUG *** indexPath.row: \(indexPath.row)")
+                cell.rankingItem = self.rankingItems[indexPath.row]
+                return cell
+            }
+        }
         return UITableViewCell()
     }
 }
