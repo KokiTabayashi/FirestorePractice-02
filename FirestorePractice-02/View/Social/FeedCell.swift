@@ -204,6 +204,8 @@ class FeedCell: UICollectionViewCell {
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.text = "Ranking Title"
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         return label
     }()
 
@@ -220,6 +222,8 @@ class FeedCell: UICollectionViewCell {
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.text = "Ranking Title"
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         return label
     }()
     
@@ -248,6 +252,8 @@ class FeedCell: UICollectionViewCell {
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.text = "Ranking Title"
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         return label
     }()
     
@@ -276,6 +282,8 @@ class FeedCell: UICollectionViewCell {
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.text = "Ranking Title"
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         return label
     }()
     
@@ -314,11 +322,11 @@ class FeedCell: UICollectionViewCell {
     
     func configureView() {
         addSubview(profileImageView)
-        profileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8 , paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
+        profileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
         profileImageView.layer.cornerRadius = 40 / 2
         
         addSubview(usernameButton)
-        usernameButton.anchor(top: nil, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        usernameButton.anchor(top: nil, left: profileImageView.rightAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         usernameButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
         
         //        addSubview(optionsButton)
@@ -338,13 +346,13 @@ class FeedCell: UICollectionViewCell {
         //        captionLabel.anchor(top: likesLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
         
         addSubview(rankingTitleLabel)
-        rankingTitleLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 12, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
+        rankingTitleLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
         addSubview(rankingCreatedDateLabel)
-        rankingCreatedDateLabel.anchor(top: rankingTitleLabel.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
+        rankingCreatedDateLabel.anchor(top: rankingTitleLabel.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
         addSubview(rankingItemTitleOneLabel)
-        rankingItemTitleOneLabel.anchor(top: rankingCreatedDateLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        rankingItemTitleOneLabel.anchor(top: rankingCreatedDateLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
         //        addSubview(rankingItemTextOneLabel)
         //        rankingItemTextOneLabel.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
@@ -361,13 +369,13 @@ class FeedCell: UICollectionViewCell {
         stackViewRankingItemOne.spacing = 6.0
         
         addSubview(stackViewRankingItemOne)
-        stackViewRankingItemOne.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        stackViewRankingItemOne.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
         //        addSubview(rankingItemTitleTwoLabel)
         //        rankingItemTitleTwoLabel.anchor(top: rankingItemOneImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         addSubview(rankingItemTitleTwoLabel)
-        rankingItemTitleTwoLabel.anchor(top: stackViewRankingItemOne.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        rankingItemTitleTwoLabel.anchor(top: stackViewRankingItemOne.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
         //        addSubview(rankingItemTextTwoLabel)
         //        rankingItemTextTwoLabel.anchor(top: rankingItemTitleTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
@@ -384,10 +392,10 @@ class FeedCell: UICollectionViewCell {
         stackViewRankingItemTwo.spacing = 6.0
         
         addSubview(stackViewRankingItemTwo)
-        stackViewRankingItemTwo.anchor(top: rankingItemTitleTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        stackViewRankingItemTwo.anchor(top: rankingItemTitleTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
         addSubview(rankingItemTitleThreeLabel)
-        rankingItemTitleThreeLabel.anchor(top: stackViewRankingItemTwo.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        rankingItemTitleThreeLabel.anchor(top: stackViewRankingItemTwo.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
         //        addSubview(rankingItemTextThreeLabel)
         //        rankingItemTextThreeLabel.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
@@ -404,7 +412,7 @@ class FeedCell: UICollectionViewCell {
         stackViewRankingItemThree.spacing = 6.0
         
         addSubview(stackViewRankingItemThree)
-        stackViewRankingItemThree.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        stackViewRankingItemThree.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
     }
 
     @objc func handleUsernameTapped() {
