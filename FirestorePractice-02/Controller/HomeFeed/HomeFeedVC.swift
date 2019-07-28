@@ -57,14 +57,23 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-//        print("collectionViewLayout")
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+        let dummyCell = FeedCell(frame: frame)
+        dummyCell.ranking = rankings[indexPath.item]
+        dummyCell.layoutIfNeeded()
         
-        let width = view.frame.width
-        var height = width + 8 + 40 + 8
-        height += 50
-        height += 60
+        let targetSize = CGSize(width: view.frame.width, height: 800)
+        let estimatedSize = dummyCell.systemLayoutSizeFitting(targetSize)
         
-        return CGSize(width: width, height: height)
+        let height = max(40 + 8 + 8, estimatedSize.height)
+        return CGSize(width: view.frame.width, height: height)
+        
+//        let width = view.frame.width
+//        var height = width + 8 + 40 + 8
+//        height += 50
+//        height += 60
+//
+//        return CGSize(width: width, height: height)
     }
     
     // MARK: - UICollectionViewDataSource
