@@ -174,6 +174,7 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func addButtonTapped() {
+        addButton.isEnabled = false
         guard let currentUid = Auth.auth().currentUser?.uid else { return }
         guard let rankingTitleText = addRankingTextField.text else { return }
         let rankingCreatedDate = FieldValue.serverTimestamp()
@@ -193,6 +194,8 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     self.addRankingTextField.text = ""
                     self.addRankingBaseView.endEditing(true)
                     self.ranking = Ranking(rankingOwnerId: currentUid, rankingTitle: rankingTitleText, rankingCreatedDate: (rankingCreatedDate as? Timestamp)?.dateValue() ?? Date(), rankingItems: self.rankingItems)
+                    self.rankingTitleLabel.text = rankingTitleText
+                    self.addButton.isEnabled = true
                 }
             }
         } else {
@@ -231,6 +234,7 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                                 let newRankingItem = RankingItem(rankingItemTitle: rankingItemTitleText, rankingItemText: rankingItemText, rankingItemImageUrl: rankingItemImageUrl, rankingItemId: self.ref!.documentID)
                                 self.rankingItems.append(newRankingItem)
                                 self.ranking = Ranking(rankingOwnerId: self.ranking.rankingOwnerId, rankingTitle: self.ranking.rankingTitle, rankingCreatedDate: self.ranking.rankingCreatedDate, rankingItems: self.rankingItems)
+                                self.addButton.isEnabled = true
                             }
                             self.tableView.reloadData()
                     })
