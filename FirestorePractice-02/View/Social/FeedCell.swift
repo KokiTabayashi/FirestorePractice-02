@@ -15,6 +15,7 @@ class FeedCell: UICollectionViewCell {
     var delegate: FeedCellDelegate?
     var width: CGFloat = 100.0
     var height: CGFloat = 100.0
+    var pattern: Int = 0
     
     var ranking: Ranking? {
 //    var rankingTap: (Ranking?, [RankingItem?]) {
@@ -63,29 +64,155 @@ class FeedCell: UICollectionViewCell {
             // Need to implement some process to prevent crash if the data is null (like enter "no data" or something)
             //
             
-            guard let rankingItemTitleOne = rankingItems[0].rankingItemTitle else { return }
-            guard let rankingItemTextOne = rankingItems[0].rankingItemText else { return }
-            guard let rankingItemImageUrlOne = rankingItems[0].rankingItemImageUrl else { return }
+//            var rankingItemTitleOne: String!
+//            var rankingItemTextOne: String!
+//            var rankingItemImageUrlOne: String!
+//
+//            var rankingItemTitleTwo: String!
+//            var rankingItemTextTwo: String!
+//            var rankingItemImageUrlTwo: String!
+//
+//            var rankingItemTitleThree: String!
+//            var rankingItemTextThree: String!
+//            var rankingItemImageUrlThree: String!
+//
+//            switch rankingItems.count {
+//            case 0:
+//                return
+//            case 1:
+//                rankingItemTitleOne = rankingItems[0].rankingItemTitle ?? " "
+//                rankingItemTextOne = rankingItems[0].rankingItemText ?? " "
+//                rankingItemImageUrlOne = rankingItems[0].rankingItemImageUrl ?? " "
+//                return
+//            case 2:
+//                rankingItemTitleOne = rankingItems[0].rankingItemTitle ?? " "
+//                rankingItemTextOne = rankingItems[0].rankingItemText ?? " "
+//                rankingItemImageUrlOne = rankingItems[0].rankingItemImageUrl ?? " "
+//
+//                rankingItemTitleTwo = rankingItems[1].rankingItemTitle ?? " "
+//                rankingItemTextTwo = rankingItems[1].rankingItemText ?? " "
+//                rankingItemImageUrlTwo = rankingItems[1].rankingItemImageUrl ?? " "
+//                return
+//            case 3:
+//                rankingItemTitleOne = rankingItems[0].rankingItemTitle ?? " "
+//                rankingItemTextOne = rankingItems[0].rankingItemText ?? " "
+//                rankingItemImageUrlOne = rankingItems[0].rankingItemImageUrl ?? " "
+//
+//                rankingItemTitleTwo = rankingItems[1].rankingItemTitle ?? " "
+//                rankingItemTextTwo = rankingItems[1].rankingItemText ?? " "
+//                rankingItemImageUrlTwo = rankingItems[1].rankingItemImageUrl ?? " "
+//
+//                rankingItemTitleThree = rankingItems[2].rankingItemTitle ?? " "
+//                rankingItemTextThree = rankingItems[2].rankingItemText ?? " "
+//                rankingItemImageUrlThree = rankingItems[2].rankingItemImageUrl ?? " "
+//                return
+//            default:
+//                return
+//            }
 
-            guard let rankingItemTitleTwo = rankingItems[1].rankingItemTitle else { return }
-            guard let rankingItemTextTwo = rankingItems[1].rankingItemText else { return }
-            guard let rankingItemImageUrlTwo = rankingItems[1].rankingItemImageUrl else { return }
+            if rankingItems.count == 1 {
+                guard let rankingItemTitleOne = rankingItems[0].rankingItemTitle else { return }
+                guard let rankingItemTextOne = rankingItems[0].rankingItemText else { return }
+                guard let rankingItemImageUrlOne = rankingItems[0].rankingItemImageUrl else { return }
+                
+                rankingItemTitleOneLabel.text = rankingItemTitleOne
+                rankingItemTextOneLabel.text = rankingItemTextOne
+                rankingItemOneImageView.loadImage(with: rankingItemImageUrlOne)
+                
+                let rankingItemTitleTwo = " "
+                let rankingItemTextTwo = " "
+                let rankingItemImageUrlTwo = " "
+                
+                rankingItemTitleTwoLabel.text = rankingItemTitleTwo
+                rankingItemTextTwoLabel.text = rankingItemTextTwo
+                rankingItemTwoImageView.loadImage(with: rankingItemImageUrlTwo)
+                
+                let rankingItemTitleThree = " "
+                let rankingItemTextThree = " "
+                let rankingItemImageUrlThree = " "
+                
+                rankingItemTitleThreeLabel.text = rankingItemTitleThree
+                rankingItemTextThreeLabel.text = rankingItemTextThree
+                rankingItemThreeImageView.loadImage(with: rankingItemImageUrlThree)
+                
+                pattern = 1
+            } else if rankingItems.count == 2 {
+                guard let rankingItemTitleOne = rankingItems[0].rankingItemTitle else { return }
+                guard let rankingItemTextOne = rankingItems[0].rankingItemText else { return }
+                guard let rankingItemImageUrlOne = rankingItems[0].rankingItemImageUrl else { return }
+                
+                rankingItemTitleOneLabel.text = rankingItemTitleOne
+                rankingItemTextOneLabel.text = rankingItemTextOne
+                rankingItemOneImageView.loadImage(with: rankingItemImageUrlOne)
+                
+                guard let rankingItemTitleTwo = rankingItems[1].rankingItemTitle else { return }
+                guard let rankingItemTextTwo = rankingItems[1].rankingItemText else { return }
+                guard let rankingItemImageUrlTwo = rankingItems[1].rankingItemImageUrl else { return }
+                
+                rankingItemTitleTwoLabel.text = rankingItemTitleTwo
+                rankingItemTextTwoLabel.text = rankingItemTextTwo
+                rankingItemTwoImageView.loadImage(with: rankingItemImageUrlTwo)
+                
+                let rankingItemTitleThree = " "
+                let rankingItemTextThree = " "
+                let rankingItemImageUrlThree = " "
+                
+                rankingItemTitleThreeLabel.text = rankingItemTitleThree
+                rankingItemTextThreeLabel.text = rankingItemTextThree
+                rankingItemThreeImageView.loadImage(with: rankingItemImageUrlThree)
+                
+                pattern = 2
+            } else if rankingItems.count >= 3 {
+                guard let rankingItemTitleOne = rankingItems[0].rankingItemTitle else { return }
+                guard let rankingItemTextOne = rankingItems[0].rankingItemText else { return }
+                guard let rankingItemImageUrlOne = rankingItems[0].rankingItemImageUrl else { return }
+                
+                rankingItemTitleOneLabel.text = rankingItemTitleOne
+                rankingItemTextOneLabel.text = rankingItemTextOne
+                rankingItemOneImageView.loadImage(with: rankingItemImageUrlOne)
+                
+                guard let rankingItemTitleTwo = rankingItems[1].rankingItemTitle else { return }
+                guard let rankingItemTextTwo = rankingItems[1].rankingItemText else { return }
+                guard let rankingItemImageUrlTwo = rankingItems[1].rankingItemImageUrl else { return }
+                
+                rankingItemTitleTwoLabel.text = rankingItemTitleTwo
+                rankingItemTextTwoLabel.text = rankingItemTextTwo
+                rankingItemTwoImageView.loadImage(with: rankingItemImageUrlTwo)
+                
+                guard let rankingItemTitleThree = rankingItems[2].rankingItemTitle else { return }
+                guard let rankingItemTextThree = rankingItems[2].rankingItemText else { return }
+                guard let rankingItemImageUrlThree = rankingItems[2].rankingItemImageUrl else { return }
+                
+                rankingItemTitleThreeLabel.text = rankingItemTitleThree
+                rankingItemTextThreeLabel.text = rankingItemTextThree
+                rankingItemThreeImageView.loadImage(with: rankingItemImageUrlThree)
+                
+                pattern = 3
+            }
             
-            guard let rankingItemTitleThree = rankingItems[2].rankingItemTitle else { return }
-            guard let rankingItemTextThree = rankingItems[2].rankingItemText else { return }
-            guard let rankingItemImageUrlThree = rankingItems[2].rankingItemImageUrl else { return }
-
-            rankingItemTitleOneLabel.text = rankingItemTitleOne
-            rankingItemTextOneLabel.text = rankingItemTextOne
-            rankingItemOneImageView.loadImage(with: rankingItemImageUrlOne)
-            
-            rankingItemTitleTwoLabel.text = rankingItemTitleTwo
-            rankingItemTextTwoLabel.text = rankingItemTextTwo
-            rankingItemTwoImageView.loadImage(with: rankingItemImageUrlTwo)
-            
-            rankingItemTitleThreeLabel.text = rankingItemTitleThree
-            rankingItemTextThreeLabel.text = rankingItemTextThree
-            rankingItemThreeImageView.loadImage(with: rankingItemImageUrlThree)
+//            guard let rankingItemTitleOne = rankingItems[0].rankingItemTitle else { return }
+//            guard let rankingItemTextOne = rankingItems[0].rankingItemText else { return }
+//            guard let rankingItemImageUrlOne = rankingItems[0].rankingItemImageUrl else { return }
+//
+//            guard let rankingItemTitleTwo = rankingItems[1].rankingItemTitle else { return }
+//            guard let rankingItemTextTwo = rankingItems[1].rankingItemText else { return }
+//            guard let rankingItemImageUrlTwo = rankingItems[1].rankingItemImageUrl else { return }
+//
+//            guard let rankingItemTitleThree = rankingItems[2].rankingItemTitle else { return }
+//            guard let rankingItemTextThree = rankingItems[2].rankingItemText else { return }
+//            guard let rankingItemImageUrlThree = rankingItems[2].rankingItemImageUrl else { return }
+//
+//            rankingItemTitleOneLabel.text = rankingItemTitleOne
+//            rankingItemTextOneLabel.text = rankingItemTextOne
+//            rankingItemOneImageView.loadImage(with: rankingItemImageUrlOne)
+//
+//            rankingItemTitleTwoLabel.text = rankingItemTitleTwo
+//            rankingItemTextTwoLabel.text = rankingItemTextTwo
+//            rankingItemTwoImageView.loadImage(with: rankingItemImageUrlTwo)
+//
+//            rankingItemTitleThreeLabel.text = rankingItemTitleThree
+//            rankingItemTextThreeLabel.text = rankingItemTextThree
+//            rankingItemThreeImageView.loadImage(with: rankingItemImageUrlThree)
             
             
             
@@ -352,6 +479,7 @@ class FeedCell: UICollectionViewCell {
         addSubview(rankingCreatedDateLabel)
         rankingCreatedDateLabel.anchor(top: rankingTitleLabel.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
+        if pattern == 1 {
         addSubview(rankingItemTitleOneLabel)
         rankingItemTitleOneLabel.anchor(top: rankingCreatedDateLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
@@ -371,10 +499,11 @@ class FeedCell: UICollectionViewCell {
         
         addSubview(stackViewRankingItemOne)
         stackViewRankingItemOne.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
-        
+        }
         //        addSubview(rankingItemTitleTwoLabel)
         //        rankingItemTitleTwoLabel.anchor(top: rankingItemOneImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
+        if pattern == 2 {
         addSubview(rankingItemTitleTwoLabel)
         rankingItemTitleTwoLabel.anchor(top: stackViewRankingItemOne.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
@@ -394,7 +523,9 @@ class FeedCell: UICollectionViewCell {
         
         addSubview(stackViewRankingItemTwo)
         stackViewRankingItemTwo.anchor(top: rankingItemTitleTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+    }
         
+        if pattern == 3 {
         addSubview(rankingItemTitleThreeLabel)
         rankingItemTitleThreeLabel.anchor(top: stackViewRankingItemTwo.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
@@ -414,6 +545,7 @@ class FeedCell: UICollectionViewCell {
         
         addSubview(stackViewRankingItemThree)
         stackViewRankingItemThree.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 8, paddingRight: 12, width: 0, height: 0)
+        }
     }
 
     @objc func handleUsernameTapped() {
