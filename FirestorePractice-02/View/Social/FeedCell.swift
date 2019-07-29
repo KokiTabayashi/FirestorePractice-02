@@ -23,6 +23,7 @@ class FeedCell: UICollectionViewCell {
         didSet {
     
             guard let ownerUid = ranking?.rankingOwnerId else { return }
+//            pattern = (ranking?.rankingItems.count)!
             
 //            var username: String!
 //            var fullName: String!
@@ -135,7 +136,8 @@ class FeedCell: UICollectionViewCell {
                 rankingItemTextThreeLabel.text = rankingItemTextThree
                 rankingItemThreeImageView.loadImage(with: rankingItemImageUrlThree)
                 
-                pattern = 1
+//                pattern = 1
+//                print("*** DEBUG ***: Pattern \(pattern)")
             } else if rankingItems.count == 2 {
                 guard let rankingItemTitleOne = rankingItems[0].rankingItemTitle else { return }
                 guard let rankingItemTextOne = rankingItems[0].rankingItemText else { return }
@@ -161,7 +163,8 @@ class FeedCell: UICollectionViewCell {
                 rankingItemTextThreeLabel.text = rankingItemTextThree
                 rankingItemThreeImageView.loadImage(with: rankingItemImageUrlThree)
                 
-                pattern = 2
+//                pattern = 2
+//                print("*** DEBUG ***: Pattern \(pattern)")
             } else if rankingItems.count >= 3 {
                 guard let rankingItemTitleOne = rankingItems[0].rankingItemTitle else { return }
                 guard let rankingItemTextOne = rankingItems[0].rankingItemText else { return }
@@ -187,7 +190,8 @@ class FeedCell: UICollectionViewCell {
                 rankingItemTextThreeLabel.text = rankingItemTextThree
                 rankingItemThreeImageView.loadImage(with: rankingItemImageUrlThree)
                 
-                pattern = 3
+//                pattern = 3
+//                print("*** DEBUG ***: Pattern \(pattern)")
             }
             
 //            guard let rankingItemTitleOne = rankingItems[0].rankingItemTitle else { return }
@@ -442,10 +446,29 @@ class FeedCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+//        if ranking?.rankingItems.count == 0 {
+//            print("*** DEBUG ***: No Items")
+//        } else if ranking?.rankingItems.count == 1 {
+//            configureViewOne()
+//        } else if ranking?.rankingItems.count == 2 {
+//            configureViewTwo()
+//        } else if (ranking?.rankingItems.count)! >= 3 {
+//            print("*** DEBUG ***: Configure View Three")
+//            configureView()
+//        }
+        
         configureView()
     }
     
     // MARK: - Handlers
+    
+//    func configureViewOne() {
+//        print("*** DEBUG ***: Configure View One")
+//    }
+//    
+//    func configureViewTwo() {
+//        print("*** DEBUG ***: Configure View Two")
+//    }
     
     func configureView() {
         addSubview(profileImageView)
@@ -457,95 +480,73 @@ class FeedCell: UICollectionViewCell {
         usernameButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
         usernameButton.contentHorizontalAlignment = .left
         
-        //        addSubview(optionsButton)
-        //        optionsButton.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
-        //        optionsButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
-        //
-        //        addSubview(postImageView)
-        //        postImageView.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        //        postImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
-        
-        //        configureActionButtons()
-        //
-        //        addSubview(likesLabel)
-        //        likesLabel.anchor(top: likeButton.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: -4, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
-        //        addSubview(captionLabel)
-        //        captionLabel.anchor(top: likesLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
-        
         addSubview(rankingTitleLabel)
         rankingTitleLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
         addSubview(rankingCreatedDateLabel)
         rankingCreatedDateLabel.anchor(top: rankingTitleLabel.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
-        if pattern == 1 {
-        addSubview(rankingItemTitleOneLabel)
-        rankingItemTitleOneLabel.anchor(top: rankingCreatedDateLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
-        
-        //        addSubview(rankingItemTextOneLabel)
-        //        rankingItemTextOneLabel.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        //
-        //        addSubview(rankingItemOneImageView)
-        //        rankingItemOneImageView.anchor(top: rankingItemTextOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: width, height: height)
-        //        rankingItemOneImageView.contentMode = .scaleAspectFit
-        ////        rankingItemOneImageView.contentMode = .scaleAspectFill
-        ////        rankingItemOneImageView.contentMode = .scaleToFill
-        //        rankingItemOneImageView.clipsToBounds = true
-        
-        stackViewRankingItemOne.axis = .horizontal
-        stackViewRankingItemOne.distribution = .fill
-        stackViewRankingItemOne.spacing = 6.0
-        
-        addSubview(stackViewRankingItemOne)
-        stackViewRankingItemOne.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
-        }
-        //        addSubview(rankingItemTitleTwoLabel)
-        //        rankingItemTitleTwoLabel.anchor(top: rankingItemOneImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
-        if pattern == 2 {
-        addSubview(rankingItemTitleTwoLabel)
-        rankingItemTitleTwoLabel.anchor(top: stackViewRankingItemOne.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
-        
-        //        addSubview(rankingItemTextTwoLabel)
-        //        rankingItemTextTwoLabel.anchor(top: rankingItemTitleTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        //
-        //        addSubview(rankingItemTwoImageView)
-        //        rankingItemTwoImageView.anchor(top: rankingItemTextTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: width, height: height)
-        //        rankingItemTwoImageView.contentMode = .scaleAspectFit
-        //        //        rankingItemOneImageView.contentMode = .scaleAspectFill
-        //        //        rankingItemOneImageView.contentMode = .scaleToFill
-        //        rankingItemTwoImageView.clipsToBounds = true
-        
-        stackViewRankingItemTwo.axis = .horizontal
-        stackViewRankingItemTwo.distribution = .fill
-        stackViewRankingItemTwo.spacing = 6.0
-        
-        addSubview(stackViewRankingItemTwo)
-        stackViewRankingItemTwo.anchor(top: rankingItemTitleTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
-    }
-        
-        if pattern == 3 {
-        addSubview(rankingItemTitleThreeLabel)
-        rankingItemTitleThreeLabel.anchor(top: stackViewRankingItemTwo.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
-        
-        //        addSubview(rankingItemTextThreeLabel)
-        //        rankingItemTextThreeLabel.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        //
-        //        addSubview(rankingItemThreeImageView)
-        //        rankingItemThreeImageView.anchor(top: rankingItemTextThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: width, height: height)
-        //        rankingItemThreeImageView.contentMode = .scaleAspectFit
-        //        //        rankingItemOneImageView.contentMode = .scaleAspectFill
-        //        //        rankingItemOneImageView.contentMode = .scaleToFill
-        //        rankingItemThreeImageView.clipsToBounds = true
-        
-        stackViewRankingItemThree.axis = .horizontal
-        stackViewRankingItemThree.distribution = .fill
-        stackViewRankingItemThree.spacing = 6.0
-        
-        addSubview(stackViewRankingItemThree)
-        stackViewRankingItemThree.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 8, paddingRight: 12, width: 0, height: 0)
-        }
+//        if pattern == 1 {
+//            addSubview(rankingItemTitleOneLabel)
+//            rankingItemTitleOneLabel.anchor(top: rankingCreatedDateLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+//
+//            stackViewRankingItemOne.axis = .horizontal
+//            stackViewRankingItemOne.distribution = .fill
+//            stackViewRankingItemOne.spacing = 6.0
+//
+//            addSubview(stackViewRankingItemOne)
+//            stackViewRankingItemOne.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 8, paddingRight: 12, width: 0, height: 0)
+//        } else if pattern == 2 {
+//            addSubview(rankingItemTitleOneLabel)
+//            rankingItemTitleOneLabel.anchor(top: rankingCreatedDateLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+//
+//            stackViewRankingItemOne.axis = .horizontal
+//            stackViewRankingItemOne.distribution = .fill
+//            stackViewRankingItemOne.spacing = 6.0
+//
+//            addSubview(stackViewRankingItemOne)
+//            stackViewRankingItemOne.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+//
+//            addSubview(rankingItemTitleTwoLabel)
+//            rankingItemTitleTwoLabel.anchor(top: stackViewRankingItemOne.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+//
+//            stackViewRankingItemTwo.axis = .horizontal
+//            stackViewRankingItemTwo.distribution = .fill
+//            stackViewRankingItemTwo.spacing = 6.0
+//
+//            addSubview(stackViewRankingItemTwo)
+//            stackViewRankingItemTwo.anchor(top: rankingItemTitleTwoLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 8, paddingRight: 12, width: 0, height: 0)
+//    } else if pattern == 3 {
+            addSubview(rankingItemTitleOneLabel)
+            rankingItemTitleOneLabel.anchor(top: rankingCreatedDateLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+            
+            stackViewRankingItemOne.axis = .horizontal
+            stackViewRankingItemOne.distribution = .fill
+            stackViewRankingItemOne.spacing = 6.0
+            
+            addSubview(stackViewRankingItemOne)
+            stackViewRankingItemOne.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+            
+            addSubview(rankingItemTitleTwoLabel)
+            rankingItemTitleTwoLabel.anchor(top: stackViewRankingItemOne.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+            
+            stackViewRankingItemTwo.axis = .horizontal
+            stackViewRankingItemTwo.distribution = .fill
+            stackViewRankingItemTwo.spacing = 6.0
+            
+            addSubview(stackViewRankingItemTwo)
+            stackViewRankingItemTwo.anchor(top: rankingItemTitleTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+            
+            addSubview(rankingItemTitleThreeLabel)
+            rankingItemTitleThreeLabel.anchor(top: stackViewRankingItemTwo.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+            
+            stackViewRankingItemThree.axis = .horizontal
+            stackViewRankingItemThree.distribution = .fill
+            stackViewRankingItemThree.spacing = 6.0
+            
+            addSubview(stackViewRankingItemThree)
+            stackViewRankingItemThree.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 8, paddingRight: 12, width: 0, height: 0)
+//        }
     }
 
     @objc func handleUsernameTapped() {
