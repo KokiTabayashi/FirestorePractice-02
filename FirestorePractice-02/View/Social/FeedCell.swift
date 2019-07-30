@@ -138,7 +138,9 @@ class FeedCell: UICollectionViewCell {
     lazy var usernameButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Username", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+//        button.setTitleColor(.black, for: .normal)
+//        button.setTitleColor(UIColor.rgb(red: 0, green: 0, blue: 51), for: .normal)
+        button.setTitleColor(UIColor.rgb(red: 32, green: 32, blue: 32), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         button.addTarget(self, action: #selector(handleUsernameTapped), for: .touchUpInside)
         return button
@@ -146,7 +148,10 @@ class FeedCell: UICollectionViewCell {
     
     let rankingTitleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+//        label.textColor = .black
+//        label.textColor = UIColor.rgb(red: 47, green: 79, blue: 79)
+//        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
+        label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
@@ -168,7 +173,9 @@ class FeedCell: UICollectionViewCell {
     
     let rankingItemTitleOneLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+//        label.textColor = .black
+//        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
+        label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
@@ -178,7 +185,9 @@ class FeedCell: UICollectionViewCell {
     
     let rankingItemTextOneLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+//        label.textColor = .black
+        //        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
+        label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
@@ -205,7 +214,9 @@ class FeedCell: UICollectionViewCell {
     
     let rankingItemTitleTwoLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+//        label.textColor = .black
+        //        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
+        label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
@@ -215,7 +226,9 @@ class FeedCell: UICollectionViewCell {
     
     let rankingItemTextTwoLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+//        label.textColor = .black
+        //        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
+        label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
@@ -242,7 +255,9 @@ class FeedCell: UICollectionViewCell {
     
     let rankingItemTitleThreeLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+//        label.textColor = .black
+        //        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
+        label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
@@ -252,7 +267,9 @@ class FeedCell: UICollectionViewCell {
     
     let rankingItemTextThreeLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+//        label.textColor = .black
+        //        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
+        label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
