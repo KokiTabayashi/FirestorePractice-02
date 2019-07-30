@@ -131,7 +131,7 @@ class FeedCell: UICollectionViewCell {
         let iv = CustomImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
-        iv.backgroundColor = .lightGray
+        iv.backgroundColor = UIColor.rgb(red: 220, green: 220, blue: 220)
         return iv
     }()
     
@@ -185,7 +185,7 @@ class FeedCell: UICollectionViewCell {
         label.numberOfLines = 0
         label.layer.cornerRadius = 10
         label.layer.borderWidth = 0.5
-        label.layer.borderColor = UIColor.lightGray.cgColor
+        label.layer.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
         return label
     }()
     
@@ -199,7 +199,7 @@ class FeedCell: UICollectionViewCell {
         iv.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
         iv.layer.cornerRadius = 10
         iv.layer.borderWidth = 0.5
-        iv.layer.borderColor = UIColor.lightGray.cgColor
+        iv.layer.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
         return iv
     }()
     
@@ -222,7 +222,7 @@ class FeedCell: UICollectionViewCell {
         label.numberOfLines = 0
         label.layer.cornerRadius = 10
         label.layer.borderWidth = 0.5
-        label.layer.borderColor = UIColor.lightGray.cgColor
+        label.layer.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
         return label
     }()
     
@@ -236,7 +236,7 @@ class FeedCell: UICollectionViewCell {
         iv.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
         iv.layer.cornerRadius = 10
         iv.layer.borderWidth = 0.5
-        iv.layer.borderColor = UIColor.lightGray.cgColor
+        iv.layer.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
         return iv
     }()
     
@@ -259,7 +259,7 @@ class FeedCell: UICollectionViewCell {
         label.numberOfLines = 0
         label.layer.cornerRadius = 10
         label.layer.borderWidth = 0.5
-        label.layer.borderColor = UIColor.lightGray.cgColor
+        label.layer.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
         return label
     }()
     
@@ -273,7 +273,7 @@ class FeedCell: UICollectionViewCell {
         iv.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
         iv.layer.cornerRadius = 10
         iv.layer.borderWidth = 0.5
-        iv.layer.borderColor = UIColor.lightGray.cgColor
+        iv.layer.borderColor = UIColor.rgb(red: 220, green: 220, blue: 220).cgColor
         return iv
     }()
     
