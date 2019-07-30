@@ -141,7 +141,8 @@ class FeedCell: UICollectionViewCell {
 //        button.setTitleColor(.black, for: .normal)
 //        button.setTitleColor(UIColor.rgb(red: 0, green: 0, blue: 51), for: .normal)
         button.setTitleColor(UIColor.rgb(red: 32, green: 32, blue: 32), for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        button.titleLabel?.font = UIFont (name: "Arial", size: 12)
         button.addTarget(self, action: #selector(handleUsernameTapped), for: .touchUpInside)
         return button
     }()
@@ -152,7 +153,8 @@ class FeedCell: UICollectionViewCell {
 //        label.textColor = UIColor.rgb(red: 47, green: 79, blue: 79)
 //        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
         label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+//        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont (name: "Arial", size: 16)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
@@ -176,7 +178,8 @@ class FeedCell: UICollectionViewCell {
 //        label.textColor = .black
 //        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
         label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+//        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont (name: "Arial", size: 14)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
@@ -188,7 +191,8 @@ class FeedCell: UICollectionViewCell {
 //        label.textColor = .black
         //        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
         label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+//        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = UIFont (name: "Arial", size: 12)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
@@ -217,7 +221,8 @@ class FeedCell: UICollectionViewCell {
 //        label.textColor = .black
         //        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
         label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+//        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont (name: "Arial", size: 14)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
@@ -229,7 +234,8 @@ class FeedCell: UICollectionViewCell {
 //        label.textColor = .black
         //        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
         label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+//        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = UIFont (name: "Arial", size: 12)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
@@ -258,7 +264,8 @@ class FeedCell: UICollectionViewCell {
 //        label.textColor = .black
         //        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
         label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+//        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont (name: "Arial", size: 14)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
@@ -270,7 +277,8 @@ class FeedCell: UICollectionViewCell {
 //        label.textColor = .black
         //        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
         label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+//        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = UIFont (name: "Arial", size: 12)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
