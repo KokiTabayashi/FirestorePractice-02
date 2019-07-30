@@ -57,4 +57,77 @@ class Parts {
         return tv
     }()
     
+//    lazy var optionsButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setTitle("•••", for: .normal)
+//        button.setTitleColor(.black, for: .normal)
+//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+//        button.addTarget(self, action: #selector(handleOptionsTapped), for: .touchUpInside)
+//        return button
+//    }()
+    
+//    lazy var postImageView: CustomImageView = {
+//        let iv = CustomImageView()
+//        iv.contentMode = .scaleAspectFill
+//        iv.clipsToBounds = true
+//        iv.backgroundColor = .lightGray
+//
+//        // add gesture recognizer for double tap to like
+//        let likeTap = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTapToLike))
+//        likeTap.numberOfTapsRequired = 2
+//        iv.isUserInteractionEnabled = true
+//        iv.addGestureRecognizer(likeTap)
+//
+//        return iv
+//    }()
+    
+//    lazy var likeButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setImage(#imageLiteral(resourceName: "like_unselected"), for: .normal)
+//        button.tintColor = .black
+//        button.addTarget(self, action: #selector(handleLikeTapped), for: .touchUpInside)
+//        return button
+//    }()
+//
+//    lazy var commentButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setImage(#imageLiteral(resourceName: "comment"), for: .normal)
+//        button.tintColor = .black
+//        button.addTarget(self, action: #selector(handleCommentTapped), for: .touchUpInside)
+//        return button
+//    }()
+    
+    let messageButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "send2"), for: .normal)
+        button.tintColor = .black
+        return button
+    }()
+    
+    let savePostButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "ribbon"), for: .normal)
+        button.tintColor = .black
+        return button
+    }()
+    
+//    lazy var likesLabel: UILabel = {
+//        let label = UILabel()
+//        label.font = UIFont.boldSystemFont(ofSize: 12)
+//        label.text = "3 lieks"
+//
+//        // add gesture recognizer to label
+//        let likeTap = UITapGestureRecognizer(target: self, action: #selector(handleShowLikes))
+//        likeTap.numberOfTapsRequired = 1
+//        label.isUserInteractionEnabled = true
+//        label.addGestureRecognizer(likeTap)
+//
+//        return label
+//    }()
+    
+//    let captionLabel: ActiveLabel = {
+//        let label = ActiveLabel()
+//        label.numberOfLines = 0
+//        return label
+//    }()
 }

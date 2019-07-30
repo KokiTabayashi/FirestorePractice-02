@@ -256,80 +256,6 @@ class FeedCell: UICollectionViewCell {
         return button
     }()
     
-//    lazy var optionsButton: UIButton = {
-//        let button = UIButton(type: .system)
-//        button.setTitle("•••", for: .normal)
-//        button.setTitleColor(.black, for: .normal)
-//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-//        button.addTarget(self, action: #selector(handleOptionsTapped), for: .touchUpInside)
-//        return button
-//    }()
-    
-//    lazy var postImageView: CustomImageView = {
-//        let iv = CustomImageView()
-//        iv.contentMode = .scaleAspectFill
-//        iv.clipsToBounds = true
-//        iv.backgroundColor = .lightGray
-//
-//        // add gesture recognizer for double tap to like
-//        let likeTap = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTapToLike))
-//        likeTap.numberOfTapsRequired = 2
-//        iv.isUserInteractionEnabled = true
-//        iv.addGestureRecognizer(likeTap)
-//
-//        return iv
-//    }()
-    
-//    lazy var likeButton: UIButton = {
-//        let button = UIButton(type: .system)
-//        button.setImage(#imageLiteral(resourceName: "like_unselected"), for: .normal)
-//        button.tintColor = .black
-//        button.addTarget(self, action: #selector(handleLikeTapped), for: .touchUpInside)
-//        return button
-//    }()
-//
-//    lazy var commentButton: UIButton = {
-//        let button = UIButton(type: .system)
-//        button.setImage(#imageLiteral(resourceName: "comment"), for: .normal)
-//        button.tintColor = .black
-//        button.addTarget(self, action: #selector(handleCommentTapped), for: .touchUpInside)
-//        return button
-//    }()
-//
-//    let messageButton: UIButton = {
-//        let button = UIButton(type: .system)
-//        button.setImage(#imageLiteral(resourceName: "send2"), for: .normal)
-//        button.tintColor = .black
-//        return button
-//    }()
-//
-//    let savePostButton: UIButton = {
-//        let button = UIButton(type: .system)
-//        button.setImage(#imageLiteral(resourceName: "ribbon"), for: .normal)
-//        button.tintColor = .black
-//        return button
-//    }()
-    
-//    lazy var likesLabel: UILabel = {
-//        let label = UILabel()
-//        label.font = UIFont.boldSystemFont(ofSize: 12)
-//        label.text = "3 lieks"
-//
-//        // add gesture recognizer to label
-//        let likeTap = UITapGestureRecognizer(target: self, action: #selector(handleShowLikes))
-//        likeTap.numberOfTapsRequired = 1
-//        label.isUserInteractionEnabled = true
-//        label.addGestureRecognizer(likeTap)
-//
-//        return label
-//    }()
-    
-//    let captionLabel: ActiveLabel = {
-//        let label = ActiveLabel()
-//        label.numberOfLines = 0
-//        return label
-//    }()
-    
     let rankingTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -370,8 +296,9 @@ class FeedCell: UICollectionViewCell {
     
     let rankingItemOneImageView: CustomImageView = {
         let iv = CustomImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
+//        iv.contentMode = .scaleAspectFill
+        iv.contentMode = .scaleAspectFit
+//        iv.clipsToBounds = true
         iv.backgroundColor = .white
         iv.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
         iv.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
@@ -400,8 +327,9 @@ class FeedCell: UICollectionViewCell {
     
     let rankingItemTwoImageView: CustomImageView = {
         let iv = CustomImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
+//        iv.contentMode = .scaleAspectFill
+        iv.contentMode = .scaleAspectFit
+//        iv.clipsToBounds = true
         iv.backgroundColor = .white
         iv.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
         iv.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
@@ -430,12 +358,19 @@ class FeedCell: UICollectionViewCell {
     
     let rankingItemThreeImageView: CustomImageView = {
         let iv = CustomImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
+//        iv.contentMode = .scaleAspectFill
+        iv.contentMode = .scaleAspectFit
+//        iv.clipsToBounds = true
         iv.backgroundColor = .white
         iv.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
         iv.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
         return iv
+    }()
+    
+    let separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        return view
     }()
     
     lazy var stackViewRankingItemOne = UIStackView(arrangedSubviews: [rankingItemOneImageView, rankingItemTextOneLabel])
@@ -519,8 +454,9 @@ class FeedCell: UICollectionViewCell {
 //    } else if pattern == 3 {
             addSubview(rankingItemTitleOneLabel)
             rankingItemTitleOneLabel.anchor(top: rankingCreatedDateLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
-            
+        
             stackViewRankingItemOne.axis = .horizontal
+//            stackViewRankingItemOne.alignment = .top
             stackViewRankingItemOne.distribution = .fill
             stackViewRankingItemOne.spacing = 6.0
             
@@ -545,7 +481,10 @@ class FeedCell: UICollectionViewCell {
             stackViewRankingItemThree.spacing = 6.0
             
             addSubview(stackViewRankingItemThree)
-            stackViewRankingItemThree.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 8, paddingRight: 12, width: 0, height: 0)
+            stackViewRankingItemThree.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+        
+            addSubview(separatorView)
+            separatorView.anchor(top: stackViewRankingItemThree.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 38, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 12)
 //        }
     }
 
