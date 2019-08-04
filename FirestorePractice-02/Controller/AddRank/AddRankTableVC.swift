@@ -54,6 +54,21 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         return tf
     } ()
     
+    let scoreTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Ranking Title"
+        tf.autocorrectionType = .no
+        tf.autocapitalizationType = .none
+        tf.spellCheckingType = .no
+        tf.clearButtonMode = .whileEditing
+        tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
+        tf.borderStyle = .roundedRect
+        tf.font = UIFont.systemFont(ofSize: 14)
+        tf.keyboardType = UIKeyboardType.decimalPad
+        //        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
+        return tf
+    } ()}
+    
     let addRankingItemTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Ranking Item"
@@ -193,7 +208,8 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     self.stackView.isHidden = false
                     self.addRankingTextField.text = ""
                     self.addRankingBaseView.endEditing(true)
-                    self.ranking = Ranking(rankingOwnerId: currentUid, rankingTitle: rankingTitleText, rankingCreatedDate: (rankingCreatedDate as? Timestamp)?.dateValue() ?? Date(), rankingItems: self.rankingItems)
+                    guard let documentId = self.ref?.documentID else { return }
+                    self.ranking = Ranking(documentId: documentId, rankingOwnerId: currentUid, rankingTitle: rankingTitleText, rankingCreatedDate: (rankingCreatedDate as? Timestamp)?.dateValue() ?? Date(), rankingItems: self.rankingItems)
                     self.rankingTitleLabel.text = rankingTitleText
                     self.addButton.isEnabled = true
                 }
@@ -231,9 +247,10 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                                 self.addRankingItemTextView.text = ""
                                 self.addRankingItemImageView.image = nil
                                 self.addRankingBaseView.endEditing(true)
+                                guard let documentId = self.ref?.documentID else { return }
                                 let newRankingItem = RankingItem(rankingItemTitle: rankingItemTitleText, rankingItemText: rankingItemText, rankingItemImageUrl: rankingItemImageUrl, rankingItemId: self.ref!.documentID)
                                 self.rankingItems.append(newRankingItem)
-                                self.ranking = Ranking(rankingOwnerId: self.ranking.rankingOwnerId, rankingTitle: self.ranking.rankingTitle, rankingCreatedDate: self.ranking.rankingCreatedDate, rankingItems: self.rankingItems)
+                                self.ranking = Ranking(documentId: documentId, rankingOwnerId: self.ranking.rankingOwnerId, rankingTitle: self.ranking.rankingTitle, rankingCreatedDate: self.ranking.rankingCreatedDate, rankingItems: self.rankingItems)
                                 self.addButton.isEnabled = true
                             }
                             self.tableView.reloadData()

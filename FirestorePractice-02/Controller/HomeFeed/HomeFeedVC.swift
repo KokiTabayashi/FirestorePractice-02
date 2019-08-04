@@ -22,8 +22,6 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     var userProfileController: UserProfileVC?
     var isFetchingUpdates = false
     var rankingItems = [RankingItem]()
-//    var rankingTap: (Ranking?, [RankingItem?])?
-//    var rankingDict: [String: [RankingItem]] = [:]
     
     // MARK: - Init
     
@@ -197,15 +195,6 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
     
     // MARK: - API
     
-//    func setUserFCMToken() {
-//        guard let currentUid = Auth.auth().currentUser?.uid else { return }
-//        guard let fcmToken = Messaging.messaging().fcmToken else { return }
-//
-//        let values = ["fcmToken": fcmToken]
-//
-//        USER_REF.child(currentUid).updateChildValues(values)
-//    }
-    
     func fetchPosts() {
 
         var queryRanking: Query!
@@ -248,30 +237,35 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
                 return
             } else {
                 guard let snap = snapshot else { return }
-
-//                self.collectionView?.refreshControl?.endRefreshing()
-
+                
                 self.rankings.removeAll()
+                
+                var documentId: String!
+                var rankingOwnerId: String!
+                var rankingTitle: String!
+                var rankingCreatedDate: Date!
                 
                 for document in snap.documents {
                     let data = document.data()
-                    let documentId = document.documentID
-                    let rankingOwnerId = data[RANKING_OWNER_ID] as? String ?? ""
-                    let rankingTitle = data[RANKING_TITLE] as? String ?? "no data"
-                    let rankingCreatedDate = (data[RANKING_CREATED_DATE] as? Timestamp)?.dateValue() ?? Date()
-//                    let numLikes = data[NUM_LIKES] as? Int ?? 0
-//                    let numComments = data[NUM_COMMENTS] as? Int ?? 0
-//                    let userId = data[USER_ID] as? String ?? ""
-//                    let photoImageUrl = data[PHOTOIMAGEURL_TXT] as? String ?? ""
+                    documentId = document.documentID
+                    rankingOwnerId = data[RANKING_OWNER_ID] as? String ?? ""
+                    rankingTitle = data[RANKING_TITLE] as? String ?? "no data"
+                    rankingCreatedDate = (data[RANKING_CREATED_DATE] as? Timestamp)?.dateValue() ?? Date()
+                    
+                    let emptyRankingItem = RankingItem(rankingItemTitle: "", rankingItemText: "", rankingItemImageUrl: "", rankingItemId: "")
+                    self.rankingItems.append(emptyRankingItem)
+                    let newRanking = Ranking(documentId: documentId, rankingOwnerId: rankingOwnerId, rankingTitle: rankingTitle, rankingCreatedDate: rankingCreatedDate, rankingItems: self.rankingItems)
+                    self.rankings.append(newRanking)
+                }
+                
+                for i in 0..<self.rankings.count {
 
-                    if true {
-                        print("document ID: \(documentId)")
-                        queryRankingItem = RANKING_REF.document(documentId).collection(RANKING_ITEM_COLLECTION)
-//                        queryRankingItem = RANKING_REF.document(documentId).collection(RANKING_ITEM_COLLECTION).order(by: RANKING_CREATED_DATE, descending: true)
-                    } else {
-                        // planed to modify when pagination is implemented
-                    }
-
+                    let ranking = self.rankings[i]
+                    
+                    guard let documentId = ranking.documentId else { return }
+                    print("document ID: \(documentId)")
+                    queryRankingItem = RANKING_REF.document(documentId).collection(RANKING_ITEM_COLLECTION)
+                    
                     queryRankingItem.getDocuments(completion: { (snapshot, error) in
                         if let error = error {
                             print(error.localizedDescription)
@@ -302,131 +296,16 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
                                 print("*** new ranking Text appended : \(rankingItemText)")
                                 print("*** total number of rankingItems: \(self.rankingItems.count)")
                             }
-                            // test
-                            let newRanking = Ranking(rankingOwnerId: rankingOwnerId, rankingTitle: rankingTitle, rankingCreatedDate: rankingCreatedDate, rankingItems: self.rankingItems)
-                            self.rankings.append(newRanking)
+
+                            self.rankings[i] = Ranking(documentId: ranking.documentId, rankingOwnerId: ranking.rankingOwnerId, rankingTitle: ranking.rankingTitle, rankingCreatedDate: ranking.rankingCreatedDate, rankingItems: self.rankingItems)
                             print("*** new ranking appended: \(rankingTitle)")
                             print("*** the number of items appended to the ranking: \(self.rankingItems.count)")
                             self.collectionView?.reloadData()
                         }
-//                        self.collectionView?.reloadData()
                     })
-//                    self.collectionView?.reloadData()
-                    //                    let newRanking = Thought(username: username, timestamp: timestamp, thoughtTxt: thoughtTxt, numLikes: numLikes, numComments: numComments, documentId: documentId, userId: userId, photoImageUrl: photoImageUrl)
                     
-                    // test commenting out
-//                    let newRanking = Ranking(rankingTitle: rankingTitle, rankingCreatedDate: rankingCreatedDate, rankingItems: self.rankingItems)
-                    
-//                    let newRanking = Ranking(rankingTitle: rankingTitle, rankingCreatedDate: rankingCreatedDate)
-                    
-                    // test commenting out
-//                    self.rankings.append(newRanking)
-//                    print("*** new ranking appended :\(rankingTitle)")
-//                    print("*** the number of items appended to the ranking: ")
-                } // End of for document in snap.documents {
-
-//                self.collectionView?.reloadData()
-                
-            } // End of } else { guard let snap = snapshot else { return }
-            
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-//                self.tableView.reloadData()
-//                self.isFetchingUpdates = false
-//            })
-//
-//            self.lastDocumentSnapshot = snapshot!.documents.last!
-            
+                }
+            }
         } // End of queryRanking.getDocuments { (snapshot, error) in
-        
-        
-        
-    
-        // old code: Firebase
-//        if currentKey == nil {
-//
-//            // DEBUG
-//            print("DEBUG: FeedVC fetchPosts - 2")
-//
-//            // USER_FEED_REF.child(currentUid).queryLimited(toLast: PAGINATION_FEED_VC).observeSingleEvent(of: .value) { (snapshot) in
-//            USER_FEED_REF.child(currentUid).queryLimited(toLast: 5).observeSingleEvent(of: .value) { (snapshot) in
-//
-//                // DEBUG
-//                print("DEBUG: FeedVC fetchPosts - 3")
-//
-//                self.collectionView?.refreshControl?.endRefreshing()
-//
-//                guard let first = snapshot.children.allObjects.first as? DataSnapshot else { return }
-//                guard let allObjects = snapshot.children.allObjects as? [DataSnapshot] else { return }
-//
-//                allObjects.forEach({ (snapshot) in
-//                    let postId = snapshot.key
-//                    self.fetchPost(withPostId: postId)
-//                })
-//                self.currentKey = first.key
-//            }
-//        } else {
-//
-//            // DEBUG
-//            print("DEBUG: FeedVC fetchPosts - 4")
-//
-//            // USER_FEED_REF.child(currentUid).queryOrderedByKey().queryEnding(atValue: self.currentKey).queryLimited(toLast: (PAGINATION_FEED_VC + 1)).observeSingleEvent(of: .value) { (snapshot) in
-//            USER_FEED_REF.child(currentUid).queryOrderedByKey().queryEnding(atValue: self.currentKey).queryLimited(toLast: 6).observeSingleEvent(of: .value) { (snapshot) in
-//
-//                // DEBUG
-//                print("DEBUG: FeedVC fetchPosts - 5")
-//
-//                guard let first = snapshot.children.allObjects.first as? DataSnapshot else { return }
-//                guard let allObjects = snapshot.children.allObjects as? [DataSnapshot] else { return }
-//
-//                allObjects.forEach({ (snapshot) in
-//                    let postId = snapshot.key
-//                    if postId != self.currentKey {
-//                        self.fetchPost(withPostId: postId)
-//                    }
-//                })
-//                self.currentKey = first.key
-//            }
-//        }
-        
-        // Codes before implementing the pagination
-        //        USER_FEED_REF.child(currentUid).observe(.childAdded) { (snapshot) in
-        //
-        //            let postId = snapshot.key
-        //
-        //            Database.fetchPost(with: postId, completion: { (post) in
-        //
-        //                self.posts.append(post)
-        //
-        //                self.posts.sort(by: { (post1, post2) -> Bool in
-        //                    return post1.creationDate > post2.creationDate
-        //                })
-        //
-        //                // stop refreshing
-        //                self.collectionView?.refreshControl?.endRefreshing()
-        //
-        //                self.collectionView?.reloadData()
-        //            })
-        //        }
     }
-
-//    func fetchPost(withPostId postId: String) {
-//
-//        // DEBUG
-//        print("DEBUG: FeedVC fetchPost - 1")
-//
-//        Database.fetchPost(with: postId) { (post) in
-//
-//            // DEBUG
-//            print("DEBUG: FeedVC fetchPost - 2")
-//
-//            self.posts.append(post)
-//            self.posts.sort(by: { (post1, post2) -> Bool in
-//                return post1.creationDate > post2.creationDate
-//            })
-//            self.collectionView?.reloadData()
-//
-//            // DEBUG
-//            print("DEBUG: FeedVC fetchPost - 3")
-//        }
-//    }
 }

@@ -11,14 +11,17 @@ import Firebase
 
 class Ranking {
     
+    private(set) var documentId: String!
     private(set) var rankingTitle: String!
     private(set) var rankingCreatedDate: Date!
     private(set) var rankingItems = [RankingItem]()
     private(set) var rankingOwnerId: String!
+
 //    private(set) var
 
-    init(rankingOwnerId: String, rankingTitle: String, rankingCreatedDate: Date, rankingItems: [RankingItem]) {
+    init(documentId: String, rankingOwnerId: String, rankingTitle: String, rankingCreatedDate: Date, rankingItems: [RankingItem]) {
 //    init(rankingTitle: String, rankingCreatedDate: Date) {
+        self.documentId = documentId
         self.rankingOwnerId = rankingOwnerId
         self.rankingTitle = rankingTitle
         self.rankingCreatedDate = rankingCreatedDate
