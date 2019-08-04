@@ -108,14 +108,9 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
         cell.delegate = self
 
         if viewSinglePost {
-//            if let ranking = self.ranking {
-//                cell.rankingTap.0 = ranking
-//            }
+
         } else {
-//            cell.rankingTap.0 = rankings[indexPath.item]
-//            cell.rankingTap.1 = rankings[indexPath.item].rankingItems
-//            cell.rankingTap = (rankings[indexPath.item], rankings[indexPath.item].rankingItems)
-//            cell.rankingTap = (rankings[indexPath.item], rankings[indexPath.item].rankingItems)
+
             cell.ranking = rankings[indexPath.item]
             print("cellForItemAt: \(indexPath.item)")
         }
@@ -225,12 +220,23 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
 
         if rankings.isEmpty {
 
+            // "order by" not working. Don't know why.
+//            queryRanking = RANKING_REF.order(by: RANKING_CREATED_DATE, descending: true).order(by: RANKING_TITLE, descending: true)
+//            queryRanking = RANKING_REF.order(by: "rankingCreatedDate", descending: true).order(by: "rankingTitle", descending: true)
+//            queryRanking = RANKING_REF.order(by: "rankingCreatedDate", descending: true)
             queryRanking = RANKING_REF.order(by: RANKING_CREATED_DATE, descending: true)
+//            queryRanking = RANKING_REF.order(by: RANKING_TITLE, descending: true)
             
         } else {
 
+            // "order by" not working. Don't know why.
+//            
             // planed to modify when pagination is implemented
+//            queryRanking = RANKING_REF.order(by: RANKING_CREATED_DATE, descending: true).order(by: RANKING_TITLE, descending: true)
+//            queryRanking = RANKING_REF.order(by: "rankingCreatedDate", descending: true).order(by: "rankingTitle", descending: true)
+//            queryRanking = RANKING_REF.order(by: "rankingCreatedDate", descending: true)
             queryRanking = RANKING_REF.order(by: RANKING_CREATED_DATE, descending: true)
+//            queryRanking = RANKING_REF.order(by: RANKING_TITLE, descending: true)
         }
         
         queryRanking.getDocuments { (snapshot, error) in
