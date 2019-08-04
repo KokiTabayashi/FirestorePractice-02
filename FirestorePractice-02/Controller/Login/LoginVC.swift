@@ -37,6 +37,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
+        tf.keyboardType = UIKeyboardType.emailAddress
         tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
         return tf
     } ()

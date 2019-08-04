@@ -67,7 +67,7 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         tf.keyboardType = UIKeyboardType.decimalPad
         //        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
         return tf
-    } ()}
+    } ()
     
     let addRankingItemTextField: UITextField = {
         let tf = UITextField()
