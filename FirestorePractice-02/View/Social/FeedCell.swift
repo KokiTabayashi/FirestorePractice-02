@@ -53,10 +53,12 @@ class FeedCell: UICollectionViewCell {
                 guard let rankingItemTitleOne = rankingItems[0].rankingItemTitle else { return }
                 guard let rankingItemTextOne = rankingItems[0].rankingItemText else { return }
                 guard let rankingItemImageUrlOne = rankingItems[0].rankingItemImageUrl else { return }
+                guard let rankingScoreOne = rankingItems[0].rankingScore else { return }
                 
                 rankingItemTitleOneLabel.text = rankingItemTitleOne
                 rankingItemTextOneLabel.text = rankingItemTextOne
                 rankingItemOneImageView.loadImage(with: rankingItemImageUrlOne)
+                rankingScoreLabelOne.text = String(format: "Score: %.0f / 100", rankingScoreOne)
                 
                 let rankingItemTitleTwo = " "
                 let rankingItemTextTwo = " "
@@ -65,6 +67,7 @@ class FeedCell: UICollectionViewCell {
                 rankingItemTitleTwoLabel.text = rankingItemTitleTwo
                 rankingItemTextTwoLabel.text = rankingItemTextTwo
                 rankingItemTwoImageView.loadImage(with: rankingItemImageUrlTwo)
+                rankingScoreLabelTwo.text = " "
                 
                 let rankingItemTitleThree = " "
                 let rankingItemTextThree = " "
@@ -73,23 +76,28 @@ class FeedCell: UICollectionViewCell {
                 rankingItemTitleThreeLabel.text = rankingItemTitleThree
                 rankingItemTextThreeLabel.text = rankingItemTextThree
                 rankingItemThreeImageView.loadImage(with: rankingItemImageUrlThree)
+                rankingScoreLabelThree.text = " "
                 
             } else if rankingItems.count == 2 {
                 guard let rankingItemTitleOne = rankingItems[0].rankingItemTitle else { return }
                 guard let rankingItemTextOne = rankingItems[0].rankingItemText else { return }
                 guard let rankingItemImageUrlOne = rankingItems[0].rankingItemImageUrl else { return }
+                guard let rankingScoreOne = rankingItems[0].rankingScore else { return }
                 
                 rankingItemTitleOneLabel.text = rankingItemTitleOne
                 rankingItemTextOneLabel.text = rankingItemTextOne
                 rankingItemOneImageView.loadImage(with: rankingItemImageUrlOne)
+                rankingScoreLabelOne.text = String(format: "Score: %.0f / 100", rankingScoreOne)
                 
                 guard let rankingItemTitleTwo = rankingItems[1].rankingItemTitle else { return }
                 guard let rankingItemTextTwo = rankingItems[1].rankingItemText else { return }
                 guard let rankingItemImageUrlTwo = rankingItems[1].rankingItemImageUrl else { return }
+                guard let rankingScoreTwo = rankingItems[1].rankingScore else { return }
                 
                 rankingItemTitleTwoLabel.text = rankingItemTitleTwo
                 rankingItemTextTwoLabel.text = rankingItemTextTwo
                 rankingItemTwoImageView.loadImage(with: rankingItemImageUrlTwo)
+                rankingScoreLabelTwo.text = String(format: "Score: %.0f / 100", rankingScoreTwo)
                 
                 let rankingItemTitleThree = " "
                 let rankingItemTextThree = " "
@@ -98,31 +106,38 @@ class FeedCell: UICollectionViewCell {
                 rankingItemTitleThreeLabel.text = rankingItemTitleThree
                 rankingItemTextThreeLabel.text = rankingItemTextThree
                 rankingItemThreeImageView.loadImage(with: rankingItemImageUrlThree)
+                rankingScoreLabelThree.text = " "
                 
             } else if rankingItems.count >= 3 {
                 guard let rankingItemTitleOne = rankingItems[0].rankingItemTitle else { return }
                 guard let rankingItemTextOne = rankingItems[0].rankingItemText else { return }
                 guard let rankingItemImageUrlOne = rankingItems[0].rankingItemImageUrl else { return }
+                guard let rankingScoreOne = rankingItems[0].rankingScore else { return }
                 
                 rankingItemTitleOneLabel.text = rankingItemTitleOne
                 rankingItemTextOneLabel.text = rankingItemTextOne
                 rankingItemOneImageView.loadImage(with: rankingItemImageUrlOne)
+                rankingScoreLabelOne.text = String(format: "Score: %.0f / 100", rankingScoreOne)
                 
                 guard let rankingItemTitleTwo = rankingItems[1].rankingItemTitle else { return }
                 guard let rankingItemTextTwo = rankingItems[1].rankingItemText else { return }
                 guard let rankingItemImageUrlTwo = rankingItems[1].rankingItemImageUrl else { return }
+                guard let rankingScoreTwo = rankingItems[1].rankingScore else { return }
                 
                 rankingItemTitleTwoLabel.text = rankingItemTitleTwo
                 rankingItemTextTwoLabel.text = rankingItemTextTwo
                 rankingItemTwoImageView.loadImage(with: rankingItemImageUrlTwo)
+                rankingScoreLabelTwo.text = String(format: "Score: %.0f / 100", rankingScoreTwo)
                 
                 guard let rankingItemTitleThree = rankingItems[2].rankingItemTitle else { return }
                 guard let rankingItemTextThree = rankingItems[2].rankingItemText else { return }
                 guard let rankingItemImageUrlThree = rankingItems[2].rankingItemImageUrl else { return }
+                guard let rankingScoreThree = rankingItems[2].rankingScore else { return }
                 
                 rankingItemTitleThreeLabel.text = rankingItemTitleThree
                 rankingItemTextThreeLabel.text = rankingItemTextThree
                 rankingItemThreeImageView.loadImage(with: rankingItemImageUrlThree)
+                rankingScoreLabelThree.text = String(format: "Score: %.0f / 100", rankingScoreThree)
             }
         }
     }
@@ -138,10 +153,7 @@ class FeedCell: UICollectionViewCell {
     lazy var usernameButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Username", for: .normal)
-//        button.setTitleColor(.black, for: .normal)
-//        button.setTitleColor(UIColor.rgb(red: 0, green: 0, blue: 51), for: .normal)
         button.setTitleColor(UIColor.rgb(red: 32, green: 32, blue: 32), for: .normal)
-//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         button.titleLabel?.font = UIFont (name: "Arial", size: 12)
         button.addTarget(self, action: #selector(handleUsernameTapped), for: .touchUpInside)
         return button
@@ -149,19 +161,11 @@ class FeedCell: UICollectionViewCell {
     
     let rankingTitleLabel: UILabel = {
         let label = UILabel()
-//        label.textColor = .black
-//        label.textColor = UIColor.rgb(red: 47, green: 79, blue: 79)
-//        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
         label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
-//        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.font = UIFont (name: "Arial", size: 16)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
-//        label.backgroundColor = UIColor.lightGray
-//        label.layer.borderWidth = 0.5
-//        label.layer.borderColor = UIColor.lightGray.cgColor
-//        label.layer.cornerRadius = 8
         return label
     }()
 
@@ -173,13 +177,32 @@ class FeedCell: UICollectionViewCell {
         return label
     }()
     
+    let numberOneLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
+        label.font = UIFont (name: "Arial", size: 18)
+        label.text = "Number 1"
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        label.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
+        return label
+    }()
+    
+    let rankingScoreLabelOne: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
+        label.font = UIFont (name: "Arial", size: 18)
+        label.text = "0"
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        label.widthAnchor.constraint(equalToConstant: 220.0).isActive = true
+        return label
+    }()
+    
     let rankingItemTitleOneLabel: UILabel = {
         let label = UILabel()
-//        label.textColor = .black
-//        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
         label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
-//        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.font = UIFont (name: "Arial", size: 14)
+        label.font = UIFont (name: "Arial", size: 16)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
@@ -188,10 +211,7 @@ class FeedCell: UICollectionViewCell {
     
     let rankingItemTextOneLabel: UILabel = {
         let label = UILabel()
-//        label.textColor = .black
-        //        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
         label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
-//        label.font = UIFont.boldSystemFont(ofSize: 12)
         label.font = UIFont (name: "Arial", size: 12)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
@@ -216,13 +236,32 @@ class FeedCell: UICollectionViewCell {
         return iv
     }()
     
+    let numberTwoLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
+        label.font = UIFont (name: "Arial", size: 18)
+        label.text = "Number 2"
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        label.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
+        return label
+    }()
+    
+    let rankingScoreLabelTwo: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
+        label.font = UIFont (name: "Arial", size: 18)
+        label.text = "0"
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        label.widthAnchor.constraint(equalToConstant: 220.0).isActive = true
+        return label
+    }()
+    
     let rankingItemTitleTwoLabel: UILabel = {
         let label = UILabel()
-//        label.textColor = .black
-        //        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
         label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
-//        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.font = UIFont (name: "Arial", size: 14)
+        label.font = UIFont (name: "Arial", size: 16)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
@@ -231,10 +270,7 @@ class FeedCell: UICollectionViewCell {
     
     let rankingItemTextTwoLabel: UILabel = {
         let label = UILabel()
-//        label.textColor = .black
-        //        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
         label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
-//        label.font = UIFont.boldSystemFont(ofSize: 12)
         label.font = UIFont (name: "Arial", size: 12)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
@@ -259,13 +295,32 @@ class FeedCell: UICollectionViewCell {
         return iv
     }()
     
+    let numberThreeLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
+        label.font = UIFont (name: "Arial", size: 18)
+        label.text = "Number 3"
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        label.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
+        return label
+    }()
+    
+    let rankingScoreLabelThree: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
+        label.font = UIFont (name: "Arial", size: 18)
+        label.text = "0"
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        label.widthAnchor.constraint(equalToConstant: 220.0).isActive = true
+        return label
+    }()
+    
     let rankingItemTitleThreeLabel: UILabel = {
         let label = UILabel()
-//        label.textColor = .black
-        //        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
         label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
-//        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.font = UIFont (name: "Arial", size: 14)
+        label.font = UIFont (name: "Arial", size: 16)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
@@ -274,10 +329,7 @@ class FeedCell: UICollectionViewCell {
     
     let rankingItemTextThreeLabel: UILabel = {
         let label = UILabel()
-//        label.textColor = .black
-        //        label.textColor = UIColor.rgb(red: 0, green: 0, blue: 51)
         label.textColor = UIColor.rgb(red: 32, green: 32, blue: 32)
-//        label.font = UIFont.boldSystemFont(ofSize: 12)
         label.font = UIFont (name: "Arial", size: 12)
         label.text = "Ranking Title"
         label.lineBreakMode = .byWordWrapping
@@ -304,11 +356,17 @@ class FeedCell: UICollectionViewCell {
     
     let separatorView: UIView = {
         let view = UIView()
-//        view.backgroundColor = .lightGray
-//        view.backgroundColor = UIColor.rgb(red: 212, green: 103, blue: 115)
         view.backgroundColor = UIColor.rgb(red: 220, green: 220, blue: 220)
         return view
     }()
+    
+    lazy var stackViewNumberOne = UIStackView(arrangedSubviews: [numberOneLabel, rankingScoreLabelOne])
+    lazy var stackViewNumberTwo = UIStackView(arrangedSubviews: [numberTwoLabel, rankingScoreLabelTwo])
+    lazy var stackViewNumberThree = UIStackView(arrangedSubviews: [numberThreeLabel, rankingScoreLabelThree])
+    
+//    lazy var stackViewRankingItemScoreOne = UIStackView(arrangedSubviews: [rankingScoreLabelOne, rankingItemTitleOneLabel])
+//    lazy var stackViewRankingItemScoreTwo = UIStackView(arrangedSubviews: [rankingScoreLabelTwo, rankingItemTitleTwoLabel])
+//    lazy var stackViewRankingItemScoreThree = UIStackView(arrangedSubviews: [rankingScoreLabelThree, rankingItemTitleThreeLabel])
     
     lazy var stackViewRankingItemOne = UIStackView(arrangedSubviews: [rankingItemOneImageView, rankingItemTextOneLabel])
     lazy var stackViewRankingItemTwo = UIStackView(arrangedSubviews: [rankingItemTwoImageView, rankingItemTextTwoLabel])
@@ -318,29 +376,10 @@ class FeedCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-//        if ranking?.rankingItems.count == 0 {
-//            print("*** DEBUG ***: No Items")
-//        } else if ranking?.rankingItems.count == 1 {
-//            configureViewOne()
-//        } else if ranking?.rankingItems.count == 2 {
-//            configureViewTwo()
-//        } else if (ranking?.rankingItems.count)! >= 3 {
-//            print("*** DEBUG ***: Configure View Three")
-//            configureView()
-//        }
-        
         configureView()
     }
     
     // MARK: - Handlers
-    
-//    func configureViewOne() {
-//        print("*** DEBUG ***: Configure View One")
-//    }
-//    
-//    func configureViewTwo() {
-//        print("*** DEBUG ***: Configure View Two")
-//    }
     
     func configureView() {
         addSubview(profileImageView)
@@ -358,34 +397,52 @@ class FeedCell: UICollectionViewCell {
         addSubview(rankingCreatedDateLabel)
         rankingCreatedDateLabel.anchor(top: rankingTitleLabel.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
+        stackViewNumberOne.axis = .horizontal
+        stackViewNumberOne.distribution = .fill
+        stackViewNumberOne.alignment = .fill
+        stackViewNumberOne.spacing = 6.0
+        addSubview(stackViewNumberOne)
+        stackViewNumberOne.anchor(top: rankingCreatedDateLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 6, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+        
         addSubview(rankingItemTitleOneLabel)
-        rankingItemTitleOneLabel.anchor(top: rankingCreatedDateLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+        rankingItemTitleOneLabel.anchor(top: stackViewNumberOne.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
         stackViewRankingItemOne.axis = .horizontal
         //            stackViewRankingItemOne.alignment = .top
         stackViewRankingItemOne.distribution = .fill
         stackViewRankingItemOne.spacing = 6.0
-        
         addSubview(stackViewRankingItemOne)
         stackViewRankingItemOne.anchor(top: rankingItemTitleOneLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
+        stackViewNumberTwo.axis = .horizontal
+        stackViewNumberTwo.distribution = .fill
+        stackViewNumberTwo.alignment = .fill
+        stackViewNumberTwo.spacing = 6.0
+        addSubview(stackViewNumberTwo)
+        stackViewNumberTwo.anchor(top: stackViewRankingItemOne.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
         addSubview(rankingItemTitleTwoLabel)
-        rankingItemTitleTwoLabel.anchor(top: stackViewRankingItemOne.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+        rankingItemTitleTwoLabel.anchor(top: stackViewNumberTwo.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
         stackViewRankingItemTwo.axis = .horizontal
         stackViewRankingItemTwo.distribution = .fill
         stackViewRankingItemTwo.spacing = 6.0
-        
         addSubview(stackViewRankingItemTwo)
         stackViewRankingItemTwo.anchor(top: rankingItemTitleTwoLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
+        stackViewNumberThree.axis = .horizontal
+        stackViewNumberThree.distribution = .fill
+        stackViewNumberThree.alignment = .fill
+        stackViewNumberThree.spacing = 6.0
+        addSubview(stackViewNumberThree)
+        stackViewNumberThree.anchor(top: stackViewRankingItemTwo.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 16, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+        
         addSubview(rankingItemTitleThreeLabel)
-        rankingItemTitleThreeLabel.anchor(top: stackViewRankingItemTwo.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+        rankingItemTitleThreeLabel.anchor(top: stackViewNumberThree.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         
         stackViewRankingItemThree.axis = .horizontal
         stackViewRankingItemThree.distribution = .fill
         stackViewRankingItemThree.spacing = 6.0
-        
         addSubview(stackViewRankingItemThree)
         stackViewRankingItemThree.anchor(top: rankingItemTitleThreeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 24, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
         

@@ -274,7 +274,7 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                             } else {
                                 self.addRankingItemTextField.text = ""
                                 self.addRankingItemTextView.text = ""
-                                self.scoreLabel.text = ""
+                                self.scoreLabel.text = "Score: ? / 100"
                                 self.addRankingItemImageView.image = nil
                                 self.addRankingBaseView.endEditing(true)
                                 guard let documentId = self.ref?.documentID else { return }
