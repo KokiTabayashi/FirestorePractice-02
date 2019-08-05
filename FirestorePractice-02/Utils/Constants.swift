@@ -24,6 +24,7 @@ let RANKING_TITLE = "rankingTitle"
 let RANKING_ID = "rankingId"
 let RANKING_CREATED_DATE = "rankingCreatedDate"
 let RANKING_OWNER_ID = "rankingOwnerId"
+let RANKING_SCORE = "rankingScore"
 
 // MARK: - ranking item collection
 let RANKING_ITEM_COLLECTION = "rankingItems"

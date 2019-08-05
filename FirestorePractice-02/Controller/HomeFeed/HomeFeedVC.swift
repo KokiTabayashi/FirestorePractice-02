@@ -252,7 +252,7 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
                     rankingTitle = data[RANKING_TITLE] as? String ?? "no data"
                     rankingCreatedDate = (data[RANKING_CREATED_DATE] as? Timestamp)?.dateValue() ?? Date()
                     
-                    let emptyRankingItem = RankingItem(rankingItemTitle: "", rankingItemText: "", rankingItemImageUrl: "", rankingItemId: "")
+                    let emptyRankingItem = RankingItem(rankingItemTitle: "", rankingItemText: "", rankingItemImageUrl: "", rankingItemId: "", rankingScore: Float(100.0))
                     self.rankingItems.append(emptyRankingItem)
                     let newRanking = Ranking(documentId: documentId, rankingOwnerId: rankingOwnerId, rankingTitle: rankingTitle, rankingCreatedDate: rankingCreatedDate, rankingItems: self.rankingItems)
                     self.rankings.append(newRanking)
@@ -264,7 +264,7 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
                     
                     guard let documentId = ranking.documentId else { return }
                     print("document ID: \(documentId)")
-                    queryRankingItem = RANKING_REF.document(documentId).collection(RANKING_ITEM_COLLECTION)
+                    queryRankingItem = RANKING_REF.document(documentId).collection(RANKING_ITEM_COLLECTION).order(by: RANKING_SCORE, descending: true)
                     
                     queryRankingItem.getDocuments(completion: { (snapshot, error) in
                         if let error = error {
@@ -289,19 +289,26 @@ class HomeFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout
                                 let rankingItemTitle = data[RANKING_ITEM_TITLE] as? String ?? ""
                                 let rankingItemText = data[RANKING_ITEM_TEXT] as? String ?? ""
                                 let rankingItemImageUrl = data[RANKING_ITEM_IMAGE_URL] as? String ?? ""
+                                let rankingScore = data[RANKING_SCORE] as? Float ?? Float(100.0)
+//                                let rankingScore = Float(100.0)
                                 
-                                let newRankingItem = RankingItem(rankingItemTitle: rankingItemTitle, rankingItemText: rankingItemText, rankingItemImageUrl: rankingItemImageUrl, rankingItemId: rankingItemId)
+                                let newRankingItem = RankingItem(rankingItemTitle: rankingItemTitle, rankingItemText: rankingItemText, rankingItemImageUrl: rankingItemImageUrl, rankingItemId: rankingItemId, rankingScore: rankingScore)
                                 self.rankingItems.append(newRankingItem)
                                 print("*** new ranking Item appended :\(rankingItemTitle)")
                                 print("*** new ranking Text appended : \(rankingItemText)")
                                 print("*** total number of rankingItems: \(self.rankingItems.count)")
                             }
 
-                            self.rankings[i] = Ranking(documentId: ranking.documentId, rankingOwnerId: ranking.rankingOwnerId, rankingTitle: ranking.rankingTitle, rankingCreatedDate: ranking.rankingCreatedDate, rankingItems: self.rankingItems)
-                            print("*** new ranking appended: \(rankingTitle)")
-                            print("*** the number of items appended to the ranking: \(self.rankingItems.count)")
-                            self.collectionView?.reloadData()
+//                            self.rankings[i] = Ranking(documentId: ranking.documentId, rankingOwnerId: ranking.rankingOwnerId, rankingTitle: ranking.rankingTitle, rankingCreatedDate: ranking.rankingCreatedDate, rankingItems: self.rankingItems)
+//                            print("*** new ranking appended: \(rankingTitle)")
+//                            print("*** the number of items appended to the ranking: \(self.rankingItems.count)")
+//                            self.collectionView?.reloadData()
                         }
+                        self.rankings[i] = Ranking(documentId: ranking.documentId, rankingOwnerId: ranking.rankingOwnerId, rankingTitle: ranking.rankingTitle, rankingCreatedDate: ranking.rankingCreatedDate, rankingItems: self.rankingItems)
+                        print("*** new ranking appended: \(rankingTitle)")
+                        print("*** the number of items appended to the ranking: \(self.rankingItems.count)")
+                        self.rankingItems.removeAll()
+                        self.collectionView?.reloadData()
                     })
                     
                 }

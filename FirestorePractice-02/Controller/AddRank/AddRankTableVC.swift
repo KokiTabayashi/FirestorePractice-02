@@ -54,20 +54,41 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         return tf
     } ()
     
-    let scoreTextField: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "Ranking Title"
-        tf.autocorrectionType = .no
-        tf.autocapitalizationType = .none
-        tf.spellCheckingType = .no
-        tf.clearButtonMode = .whileEditing
-        tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
-        tf.borderStyle = .roundedRect
-        tf.font = UIFont.systemFont(ofSize: 14)
-        tf.keyboardType = UIKeyboardType.decimalPad
-        //        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
-        return tf
+//    let scoreTextField: UITextField = {
+//        let tf = UITextField()
+//        tf.placeholder = "100.0 / 100.0"
+//        tf.autocorrectionType = .no
+//        tf.autocapitalizationType = .none
+//        tf.spellCheckingType = .no
+//        tf.clearButtonMode = .whileEditing
+//        tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
+//        tf.borderStyle = .roundedRect
+//        tf.font = UIFont.systemFont(ofSize: 14)
+//        tf.keyboardType = UIKeyboardType.decimalPad
+//        //        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
+//        return tf
+//    } ()
+    
+    let scoreLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.text = "Score: ? / 100"
+        return label
+    }()
+    
+    let scoreSlider: UISlider = {
+        let slider = UISlider()
+        slider.frame = CGRect(x: 0, y: 0, width: 250, height: 45)
+        slider.minimumValue = 0
+        slider.maximumValue = 100
+        slider.setValue(50, animated: true)
+        slider.isContinuous = true
+        slider.tintColor = UIColor.darkGray
+        slider.addTarget(self, action: #selector(sliderValueDidChange), for: .valueChanged)
+        return slider
     } ()
+    
     
     let addRankingItemTextField: UITextField = {
         let tf = UITextField()
@@ -156,6 +177,10 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.dismiss(animated: true, completion: nil)
     }
     
+    @objc func sliderValueDidChange(sender: UISlider!) {
+        scoreLabel.text = String(format: "Score: %.0f / 100", sender.value)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         addRankingTextField.resignFirstResponder()
         addRankingItemTextField.resignFirstResponder()
@@ -205,6 +230,8 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 } else {
                     self.addRankingTextField.isHidden = true
                     self.addRankingItemTextField.isHidden = false
+                    self.scoreLabel.isHidden = false
+                    self.scoreSlider.isHidden = false
                     self.stackView.isHidden = false
                     self.addRankingTextField.text = ""
                     self.addRankingBaseView.endEditing(true)
@@ -219,6 +246,7 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             guard let rankingItemText = addRankingItemTextView.text else { return }
             let rankingImage = self.addRankingItemImageView.image ?? UIImage(named: "add_new_post_btn")
             guard let rankingImageUploadData = rankingImage?.jpegData(compressionQuality: 0.5) else { return }
+            let rankingScore = scoreSlider.value
             
             // update storage
             let filename = NSUUID().uuidString
@@ -238,17 +266,19 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                         RANKING_ITEM_TITLE: rankingItemTitleText,
                         RANKING_ITEM_IMAGE_URL: rankingItemImageUrl,
                         RANKING_ITEM_TEXT: rankingItemText,
-                        RANKING_ITEM_CREATED_DATE: FieldValue.serverTimestamp()
+                        RANKING_ITEM_CREATED_DATE: FieldValue.serverTimestamp(),
+                        RANKING_SCORE: rankingScore
                         ], completion: { (err) in
                             if let err = err {
                                 debugPrint("Error adding document: \(err)")
                             } else {
                                 self.addRankingItemTextField.text = ""
                                 self.addRankingItemTextView.text = ""
+                                self.scoreLabel.text = ""
                                 self.addRankingItemImageView.image = nil
                                 self.addRankingBaseView.endEditing(true)
                                 guard let documentId = self.ref?.documentID else { return }
-                                let newRankingItem = RankingItem(rankingItemTitle: rankingItemTitleText, rankingItemText: rankingItemText, rankingItemImageUrl: rankingItemImageUrl, rankingItemId: self.ref!.documentID)
+                                let newRankingItem = RankingItem(rankingItemTitle: rankingItemTitleText, rankingItemText: rankingItemText, rankingItemImageUrl: rankingItemImageUrl, rankingItemId: self.ref!.documentID, rankingScore: rankingScore)
                                 self.rankingItems.append(newRankingItem)
                                 self.ranking = Ranking(documentId: documentId, rankingOwnerId: self.ranking.rankingOwnerId, rankingTitle: self.ranking.rankingTitle, rankingCreatedDate: self.ranking.rankingCreatedDate, rankingItems: self.rankingItems)
                                 self.addButton.isEnabled = true
@@ -283,12 +313,10 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.estimatedRowHeight = UITableView.automaticDimension
         view.addSubview(tableView)
 //        tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        // test
         tableView.anchor(top: rankingTitleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         view.addSubview(addRankingBaseView)
-        addRankingBaseView.anchor(top: tableView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 200)
+        addRankingBaseView.anchor(top: tableView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 280)
         addRankingBaseView.backgroundColor = .white
         
         addRankingBaseView.addSubview(addRankingTextField)
@@ -300,6 +328,14 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         addRankingItemTextField.anchor(top: addRankingBaseView.topAnchor, left: addRankingBaseView.leftAnchor, bottom: nil, right: addRankingBaseView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
         addRankingItemTextField.isHidden = true
         
+        addRankingBaseView.addSubview(scoreLabel)
+        scoreLabel.anchor(top: addRankingItemTextField.bottomAnchor, left: addRankingBaseView.leftAnchor, bottom: nil, right: addRankingBaseView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 40)
+        scoreLabel.isHidden = true
+        
+        addRankingBaseView.addSubview(scoreSlider)
+        scoreSlider.anchor(top: scoreLabel.bottomAnchor, left: addRankingBaseView.leftAnchor, bottom: nil, right: addRankingBaseView.rightAnchor, paddingTop: 0, paddingLeft: 48, paddingBottom: 8, paddingRight: 48, width: 0, height: 0)
+        scoreSlider.isHidden = true
+        
         //        addRankingBaseView.addSubview(stackViewBaseView)
         //        stackViewBaseView.anchor(top: addRankingItemTextField.bottomAnchor, left: addRankingBaseView.leftAnchor, bottom: nil, right: addRankingBaseView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
         //        stackViewBaseView.isHidden = true
@@ -310,7 +346,8 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         stackView.distribution = .fill
         addRankingBaseView.addSubview(stackView)
         //        stackView.anchor(top: stackViewBaseView.topAnchor, left: stackViewBaseView.leftAnchor, bottom: stackViewBaseView.bottomAnchor, right: stackViewBaseView.rightAnchor, paddingTop: 2, paddingLeft: 2, paddingBottom: 2, paddingRight: 2, width: 0, height: 0)
-        stackView.anchor(top: addRankingItemTextField.bottomAnchor, left: addRankingBaseView.leftAnchor, bottom: nil, right: addRankingBaseView.rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
+//        stackView.anchor(top: addRankingItemTextField.bottomAnchor, left: addRankingBaseView.leftAnchor, bottom: nil, right: addRankingBaseView.rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
+        stackView.anchor(top: scoreSlider.bottomAnchor, left: addRankingBaseView.leftAnchor, bottom: nil, right: addRankingBaseView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
         stackView.backgroundColor = .blue
         stackView.isHidden = true
         
