@@ -35,10 +35,12 @@ class RankingCell: UITableViewCell {
             guard let rankingItemTitle = rankingItem?.rankingItemTitle else { return }
             guard let rankingItemText = rankingItem?.rankingItemText else { return }
             guard let rankingItemImageUrl = rankingItem?.rankingItemImageUrl else { return }
+            guard let rankingScore = rankingItem?.rankingScore else { return }
             
             rankingItemTitleLabel.text = rankingItemTitle
             rankingItemTextLabel.text = rankingItemText
             rankingItemImageView.loadImage(with: rankingItemImageUrl)
+            rankingScoreLabel.text =  String(format: "Score: %.0f / 100", rankingScore)
         }
     }
     
@@ -85,6 +87,22 @@ class RankingCell: UITableViewCell {
         return label
     }()
     
+    let rankingNumberLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.text = " "
+        return label
+    }()
+    
+    let rankingScoreLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.text = "Score: 0 / 100"
+        return label
+    }()
+    
     let rankingItemTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -113,6 +131,7 @@ class RankingCell: UITableViewCell {
         return iv
     }()
     
+    lazy var stackViewRankingNumber = UIStackView(arrangedSubviews: [rankingNumberLabel, rankingScoreLabel])
     lazy var stackViewRankingItem = UIStackView(arrangedSubviews: [rankingItemImageView, rankingItemTextLabel])
     
     let containerView:UIView = {
@@ -131,19 +150,19 @@ class RankingCell: UITableViewCell {
         containerView.addSubview(rankingItemTitleLabel)
         rankingItemTitleLabel.anchor(top: self.containerView.topAnchor, left: self.containerView.leftAnchor, bottom: nil, right: self.containerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
         
+        stackViewRankingNumber.axis = .horizontal
+        stackViewRankingNumber.distribution = .fill
+        stackViewRankingNumber.spacing = 6.0
+        stackViewRankingNumber.backgroundColor = .lightGray
+        containerView.addSubview(stackViewRankingNumber)
+        stackViewRankingNumber.anchor(top: rankingItemTitleLabel.bottomAnchor, left: self.containerView.leftAnchor, bottom: nil, right: self.containerView.rightAnchor, paddingTop: 2, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
         
         stackViewRankingItem.axis = .horizontal
         stackViewRankingItem.distribution = .fill
         stackViewRankingItem.spacing = 6.0
         stackViewRankingItem.backgroundColor = .lightGray
-        
         containerView.addSubview(stackViewRankingItem)
-        stackViewRankingItem.anchor(top: rankingItemTitleLabel.bottomAnchor, left: self.containerView.leftAnchor, bottom: self.containerView.bottomAnchor, right: self.containerView.rightAnchor, paddingTop: 2, paddingLeft: 8, paddingBottom: 2, paddingRight: 8, width: 0, height: 0)
-        
-//        containerView.addSubview(rankingItemTextLabel)
-//        rankingItemTextLabel.anchor(top: rankingItemTitleLabel.bottomAnchor, left: self.containerView.leftAnchor, bottom: nil, right: self.containerView.rightAnchor, paddingTop: 2, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
-//        containerView.addSubview(rankingItemImageView)
-//        rankingItemImageView.anchor(top: rankingItemTextLabel.bottomAnchor, left: self.containerView.leftAnchor, bottom: self.containerView.bottomAnchor, right: self.containerView.rightAnchor, paddingTop: 2, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+        stackViewRankingItem.anchor(top: stackViewRankingNumber.bottomAnchor, left: self.containerView.leftAnchor, bottom: self.containerView.bottomAnchor, right: self.containerView.rightAnchor, paddingTop: 2, paddingLeft: 8, paddingBottom: 2, paddingRight: 8, width: 0, height: 0)
     }
     
     @objc func handleUsernameTapped() {
