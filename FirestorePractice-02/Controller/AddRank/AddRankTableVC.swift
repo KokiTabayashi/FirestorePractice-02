@@ -54,21 +54,6 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         return tf
     } ()
     
-//    let scoreTextField: UITextField = {
-//        let tf = UITextField()
-//        tf.placeholder = "100.0 / 100.0"
-//        tf.autocorrectionType = .no
-//        tf.autocapitalizationType = .none
-//        tf.spellCheckingType = .no
-//        tf.clearButtonMode = .whileEditing
-//        tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
-//        tf.borderStyle = .roundedRect
-//        tf.font = UIFont.systemFont(ofSize: 14)
-//        tf.keyboardType = UIKeyboardType.decimalPad
-//        //        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
-//        return tf
-//    } ()
-    
     let scoreLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
@@ -88,7 +73,6 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         slider.addTarget(self, action: #selector(sliderValueDidChange), for: .valueChanged)
         return slider
     } ()
-    
     
     let addRankingItemTextField: UITextField = {
         let tf = UITextField()
@@ -283,6 +267,9 @@ class AddRankTableVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                                 self.ranking = Ranking(documentId: documentId, rankingOwnerId: self.ranking.rankingOwnerId, rankingTitle: self.ranking.rankingTitle, rankingCreatedDate: self.ranking.rankingCreatedDate, rankingItems: self.rankingItems)
                                 self.addButton.isEnabled = true
                             }
+                            
+                            self.rankingItems = self.rankingItems.sorted(by: {$0.rankingScore > $1.rankingScore})
+                            
                             self.tableView.reloadData()
                     })
                 })
